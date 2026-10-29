@@ -4,126 +4,566 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>SJD School Events</title>
+
   <style>
+    :root {
+      --navy: #243b63;
+      --blue: #dcecff;
+      --blue-dark: #4779bd;
+      --yellow: #ffe6a3;
+      --background: #f6f9fe;
+      --white: #ffffff;
+      --text: #34435b;
+      --muted: #758197;
+      --border: #e8edf5;
+    }
+
     * {
       box-sizing: border-box;
     }
 
+    html {
+      scroll-behavior: smooth;
+    }
+
     body {
       margin: 0;
-      font-family: Arial, sans-serif;
-      background: #f2f5fa;
-      color: #243047;
-    }
-
-    header {
-      background: #15366b;
-      color: white;
-      text-align: center;
-      padding: 35px 20px;
-    }
-
-    header h1 {
-      margin: 0 0 10px;
-      font-size: 32px;
-    }
-
-    header p {
-      margin: 0;
+      font-family: "Segoe UI", Arial, sans-serif;
+      background: var(--background);
+      color: var(--text);
       line-height: 1.6;
     }
 
-    main {
-      max-width: 850px;
-      margin: 30px auto;
-      padding: 0 18px;
+    a {
+      color: inherit;
+      text-decoration: none;
     }
 
-    .notice {
+    .navbar {
+      background: rgba(255, 255, 255, 0.96);
+      border-bottom: 1px solid var(--border);
+      padding: 15px 7%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 11px;
+      font-size: 19px;
+      font-weight: 750;
+      color: var(--navy);
+    }
+
+    .brand-icon {
+      background: var(--blue);
+      width: 43px;
+      height: 43px;
+      border-radius: 15px;
+      display: grid;
+      place-items: center;
+      font-size: 22px;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 27px;
+      align-items: center;
+      flex-wrap: wrap;
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--muted);
+    }
+
+    .nav-links a:hover {
+      color: var(--blue-dark);
+    }
+
+    .nav-button {
+      background: var(--navy);
+      color: white !important;
+      padding: 10px 17px;
+      border-radius: 14px;
+    }
+
+    .hero {
+      max-width: 1120px;
+      margin: 42px auto 28px;
+      padding: 0 24px;
+    }
+
+    .hero-box {
+      background: var(--blue);
+      border-radius: 30px;
+      padding: 54px 50px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 30px;
+      overflow: hidden;
+    }
+
+    .eyebrow {
+      display: inline-block;
       background: white;
-      border-left: 5px solid #e5a52b;
-      border-radius: 8px;
-      padding: 18px;
+      color: var(--blue-dark);
+      padding: 7px 13px;
+      border-radius: 30px;
+      font-size: 12px;
+      font-weight: 750;
+      letter-spacing: 0.4px;
+      margin-bottom: 15px;
+    }
+
+    h1, h2, h3, p {
+      margin-top: 0;
+    }
+
+    h1 {
+      color: var(--navy);
+      font-size: clamp(34px, 5vw, 52px);
+      letter-spacing: -1.8px;
+      line-height: 1.13;
+      margin-bottom: 16px;
+    }
+
+    .hero p {
+      max-width: 480px;
+      color: #536b8b;
+      font-size: 16px;
       margin-bottom: 25px;
     }
 
-    .events {
+    .primary-button {
+      display: inline-block;
+      background: var(--navy);
+      color: white;
+      padding: 13px 20px;
+      border-radius: 15px;
+      font-weight: 650;
+      font-size: 14px;
+      transition: transform 0.2s, background 0.2s;
+    }
+
+    .primary-button:hover {
+      background: var(--blue-dark);
+      transform: translateY(-2px);
+    }
+
+    .hero-art {
+      min-width: 170px;
+      width: 210px;
+      height: 210px;
+      border-radius: 50%;
+      background: #ffffffa8;
       display: grid;
-      gap: 18px;
+      place-items: center;
+      position: relative;
+      font-size: 88px;
     }
 
-    .event {
+    .hero-art::before,
+    .hero-art::after {
+      content: "";
+      position: absolute;
+      border-radius: 50%;
+    }
+
+    .hero-art::before {
+      background: var(--yellow);
+      width: 43px;
+      height: 43px;
+      top: 5px;
+      right: 8px;
+    }
+
+    .hero-art::after {
+      background: #b9e6d6;
+      width: 27px;
+      height: 27px;
+      bottom: 13px;
+      left: 0;
+    }
+
+    main {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 12px 24px 50px;
+    }
+
+    .section-heading {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 16px;
+      margin: 28px 0 20px;
+      flex-wrap: wrap;
+    }
+
+    .section-heading h2 {
+      color: var(--navy);
+      font-size: 27px;
+      letter-spacing: -0.6px;
+      margin-bottom: 4px;
+    }
+
+    .section-heading p {
+      color: var(--muted);
+      margin-bottom: 0;
+      font-size: 14px;
+    }
+
+    .text-link {
+      color: var(--blue-dark);
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    .announcement {
       background: white;
-      padding: 22px;
-      border-radius: 10px;
-      box-shadow: 0 2px 8px #00000010;
+      border: 1px solid var(--border);
+      border-radius: 22px;
+      padding: 22px 25px;
+      display: flex;
+      align-items: center;
+      gap: 17px;
+      margin-bottom: 30px;
+      box-shadow: 0 5px 20px #243b6308;
     }
 
-    .event h3 {
-      color: #15366b;
-      margin-top: 0;
+    .announcement-icon {
+      width: 50px;
+      height: 50px;
+      flex-shrink: 0;
+      display: grid;
+      place-items: center;
+      background: #fff1c9;
+      border-radius: 16px;
+      font-size: 23px;
+    }
+
+    .announcement h3 {
+      color: var(--navy);
+      font-size: 16px;
+      margin-bottom: 4px;
+    }
+
+    .announcement p {
+      color: var(--muted);
+      font-size: 14px;
+      margin-bottom: 0;
+    }
+
+    .events-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 20px;
+    }
+
+    .event-card {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 23px;
+      padding: 23px;
+      box-shadow: 0 6px 22px #243b6308;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .event-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 27px #243b6312;
+    }
+
+    .event-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 20px;
+    }
+
+    .event-icon {
+      width: 51px;
+      height: 51px;
+      display: grid;
+      place-items: center;
+      border-radius: 17px;
+      font-size: 25px;
+    }
+
+    .icon-blue {
+      background: #e2eeff;
+    }
+
+    .icon-yellow {
+      background: #fff0c8;
+    }
+
+    .icon-green {
+      background: #ddf5e9;
     }
 
     .tag {
       display: inline-block;
-      background: #e5edfc;
-      color: #15366b;
-      border-radius: 15px;
-      padding: 5px 10px;
+      background: #f0f4fa;
+      color: #65748b;
+      padding: 6px 10px;
+      border-radius: 20px;
+      font-size: 11px;
+      font-weight: 750;
+    }
+
+    .event-card h3 {
+      color: var(--navy);
+      font-size: 18px;
+      margin-bottom: 8px;
+    }
+
+    .event-card > p {
+      font-size: 14px;
+      color: var(--muted);
+      margin-bottom: 19px;
+      min-height: 45px;
+    }
+
+    .event-details {
+      border-top: 1px solid var(--border);
+      padding-top: 15px;
       font-size: 13px;
+      color: #596a83;
+    }
+
+    .event-details p {
+      margin-bottom: 7px;
+    }
+
+    .event-details strong {
+      color: var(--navy);
+    }
+
+    .reminder-box {
+      background: #fff4d8;
+      border-radius: 23px;
+      padding: 27px 30px;
+      margin-top: 34px;
+      display: flex;
+      align-items: center;
+      gap: 18px;
+    }
+
+    .reminder-box .reminder-emoji {
+      font-size: 35px;
+    }
+
+    .reminder-box h2 {
+      color: var(--navy);
+      font-size: 20px;
+      margin-bottom: 5px;
+    }
+
+    .reminder-box p {
+      color: #756b54;
+      font-size: 14px;
+      margin-bottom: 0;
     }
 
     footer {
       text-align: center;
-      padding: 25px;
-      color: #566176;
+      background: white;
+      border-top: 1px solid var(--border);
+      padding: 27px 20px;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    footer strong {
+      color: var(--navy);
+    }
+
+    @media (max-width: 800px) {
+      .navbar {
+        padding: 15px 5%;
+      }
+
+      .nav-links {
+        gap: 15px;
+      }
+
+      .hero-box {
+        padding: 38px 30px;
+      }
+
+      .hero-art {
+        width: 145px;
+        height: 145px;
+        min-width: 145px;
+        font-size: 62px;
+      }
+
+      .events-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 560px) {
+      .navbar {
+        align-items: flex-start;
+      }
+
+      .nav-links {
+        width: 100%;
+        gap: 12px 19px;
+        font-size: 13px;
+      }
+
+      .hero {
+        margin-top: 22px;
+        padding: 0 15px;
+      }
+
+      .hero-box {
+        padding: 30px 23px;
+        border-radius: 24px;
+      }
+
+      .hero-art {
+        display: none;
+      }
+
+      main {
+        padding: 10px 15px 35px;
+      }
+
+      .events-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .announcement {
+        padding: 18px;
+      }
+
+      .reminder-box {
+        padding: 23px 20px;
+        align-items: flex-start;
+      }
     }
   </style>
 </head>
+
 <body>
-  <header>
-    <h1>SJD School Events</h1>
-    <p>Know what's happening. Know what to bring. Never miss a date.</p>
+  <nav class="navbar">
+    <a class="brand" href="#home">
+      <span class="brand-icon">✦</span>
+      <span>SJD School Events</span>
+    </a>
+
+    <div class="nav-links">
+      <a href="#home">Home</a>
+      <a href="#events">Events</a>
+      <a href="#reminders">Reminders</a>
+      <a class="nav-button" href="#events">Explore events ↗</a>
+    </div>
+  </nav>
+
+  <header class="hero" id="home">
+    <div class="hero-box">
+      <div>
+        <span class="eyebrow">YOUR SCHOOL, ALL IN ONE PLACE</span>
+        <h1>Stay in the<br>loop. ✨</h1>
+        <p>
+          Your place for school events, important dates,
+          and reminders. Everything you need to stay up to date.
+        </p>
+        <a class="primary-button" href="#events">Explore upcoming events →</a>
+      </div>
+
+      <div class="hero-art" aria-hidden="true">📅</div>
+    </div>
   </header>
 
   <main>
-    <section class="notice">
-      <h2>Welcome!</h2>
-      <p>Find important event dates, deadlines, and reminders in one place.</p>
-      <p><strong>Note:</strong> This is a practice website. Event details must be verified with the school.</p>
+    <section class="announcement" aria-label="Important announcement">
+      <div class="announcement-icon">📣</div>
+      <div>
+        <h3>A little heads-up!</h3>
+        <p>
+          Check official school announcements to confirm event dates,
+          deadlines, and any changes.
+        </p>
+      </div>
     </section>
 
-    <h2>Upcoming Events</h2>
+    <section id="events">
+      <div class="section-heading">
+        <div>
+          <h2>What's happening? 👀</h2>
+          <p>Keep an eye on what's coming up around school.</p>
+        </div>
+        <span class="text-link">Upcoming events</span>
+      </div>
 
-    <section class="events">
-      <article class="event">
-        <span class="tag">Practice example</span>
-        <h3>School Event 1</h3>
-        <p><strong>Date:</strong> To be announced</p>
-        <p><strong>What to do:</strong> Check official school announcements.</p>
-        <p><strong>Bring or pay:</strong> Confirm with the school.</p>
-      </article>
+      <div class="events-grid">
+        <article class="event-card">
+          <div class="event-top">
+            <div class="event-icon icon-blue">🎉</div>
+            <span class="tag">SCHOOL LIFE</span>
+          </div>
+          <h3>School Spirit Day</h3>
+          <p>Show your school spirit and take part in the fun.</p>
+          <div class="event-details">
+            <p>📅 <strong>Date:</strong> To be announced</p>
+            <p>📍 <strong>Location:</strong> Confirm with school</p>
+          </div>
+        </article>
 
-      <article class="event">
-        <span class="tag">Practice example</span>
-        <h3>School Event 2</h3>
-        <p><strong>Date:</strong> To be announced</p>
-        <p><strong>What to do:</strong> Check whether registration is required.</p>
-        <p><strong>Bring or pay:</strong> Confirm with the school.</p>
-      </article>
+        <article class="event-card">
+          <div class="event-top">
+            <div class="event-icon icon-yellow">📚</div>
+            <span class="tag">STUDENT LIFE</span>
+          </div>
+          <h3>Club Meeting</h3>
+          <p>Connect with other students and explore your interests.</p>
+          <div class="event-details">
+            <p>📅 <strong>Date:</strong> To be announced</p>
+            <p>📍 <strong>Location:</strong> Confirm with school</p>
+          </div>
+        </article>
 
-      <article class="event">
-        <span class="tag">Practice example</span>
-        <h3>School Event 3</h3>
-        <p><strong>Date:</strong> To be announced</p>
-        <p><strong>What to do:</strong> Watch for official reminders.</p>
-        <p><strong>Bring or pay:</strong> Confirm with the school.</p>
-      </article>
+        <article class="event-card">
+          <div class="event-top">
+            <div class="event-icon icon-green">🌱</div>
+            <span class="tag">COMMUNITY</span>
+          </div>
+          <h3>Community Service</h3>
+          <p>Find ways to get involved and make a positive difference.</p>
+          <div class="event-details">
+            <p>📅 <strong>Date:</strong> To be announced</p>
+            <p>📍 <strong>Details:</strong> Confirm with school</p>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="reminder-box" id="reminders">
+      <div class="reminder-emoji">💡</div>
+      <div>
+        <h2>Don't miss the little things!</h2>
+        <p>
+          Before an event, double-check the time, location,
+          registration requirements, and anything you need to bring.
+        </p>
+      </div>
     </section>
   </main>
 
   <footer>
-    SJD Event Communication Project | Student Practice Website
+    <strong>SJD School Events</strong>
+    <p>Student Practice Website · Stay informed, stay connected.</p>
+    <p>Practice examples only. Confirm event details with the school.</p>
   </footer>
 </body>
 </html>
