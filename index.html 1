@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SJD School Events</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f2f5fa;
+      color: #243047;
+    }
+
+    header {
+      background: #15366b;
+      color: white;
+      text-align: center;
+      padding: 35px 20px;
+    }
+
+    header h1 {
+      margin: 0 0 10px;
+      font-size: 32px;
+    }
+
+    header p {
+      margin: 0;
+      line-height: 1.6;
+    }
+
+    main {
+      max-width: 850px;
+      margin: 30px auto;
+      padding: 0 18px;
+    }
+
+    .notice {
+      background: white;
+      border-left: 5px solid #e5a52b;
+      border-radius: 8px;
+      padding: 18px;
+      margin-bottom: 25px;
+    }
+
+    .events {
+      display: grid;
+      gap: 18px;
+    }
+
+    .event {
+      background: white;
+      padding: 22px;
+      border-radius: 10px;
+      box-shadow: 0 2px 8px #00000010;
+    }
+
+    .event h3 {
+      color: #15366b;
+      margin-top: 0;
+    }
+
+    .tag {
+      display: inline-block;
+      background: #e5edfc;
+      color: #15366b;
+      border-radius: 15px;
+      padding: 5px 10px;
+      font-size: 13px;
+    }
+
+    footer {
+      text-align: center;
+      padding: 25px;
+      color: #566176;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>SJD School Events</h1>
+    <p>Know what's happening. Know what to bring. Never miss a date.</p>
+  </header>
+
+  <main>
+    <section class="notice">
+      <h2>Welcome!</h2>
+      <p>Find important event dates, deadlines, and reminders in one place.</p>
+      <p><strong>Note:</strong> This is a practice website. Event details must be verified with the school.</p>
+    </section>
+
+    <h2>Upcoming Events</h2>
+
+    <section class="events">
+      <article class="event">
+        <span class="tag">Practice example</span>
+        <h3>School Event 1</h3>
+        <p><strong>Date:</strong> To be announced</p>
+        <p><strong>What to do:</strong> Check official school announcements.</p>
+        <p><strong>Bring or pay:</strong> Confirm with the school.</p>
+      </article>
+
+      <article class="event">
+        <span class="tag">Practice example</span>
+        <h3>School Event 2</h3>
+        <p><strong>Date:</strong> To be announced</p>
+        <p><strong>What to do:</strong> Check whether registration is required.</p>
+        <p><strong>Bring or pay:</strong> Confirm with the school.</p>
+      </article>
+
+      <article class="event">
+        <span class="tag">Practice example</span>
+        <h3>School Event 3</h3>
+        <p><strong>Date:</strong> To be announced</p>
+        <p><strong>What to do:</strong> Watch for official reminders.</p>
+        <p><strong>Bring or pay:</strong> Confirm with the school.</p>
+      </article>
+    </section>
+  </main>
+
+  <footer>
+    SJD Event Communication Project | Student Practice Website
+  </footer>
+</body>
+</html>
