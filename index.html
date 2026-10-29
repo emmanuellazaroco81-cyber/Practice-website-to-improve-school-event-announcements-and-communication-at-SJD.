@@ -4,7 +4,47 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>SJD School Events</title>
+/* Subtle Catholic-inspired side decorations */
+body {
+  position: relative;
+  overflow-x: hidden;
+}
 
+body::before,
+body::after {
+  position: fixed;
+  top: 120px;
+  bottom: 30px;
+  width: 42px;
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.45;
+  font-size: 19px;
+  line-height: 2.8;
+  text-align: center;
+  white-space: pre-wrap;
+  content: "✝\A  ❧\A  ✝\A  ❦\A  ✝\A  ❧";
+}
+
+body::before {
+  left: 5px;
+  color: #4779bd;
+}
+
+body::after {
+  right: 5px;
+  color: #78947b;
+  transform: scaleX(-1);
+}
+
+/* Keep the website content above the decorations */
+nav,
+header,
+main,
+footer,
+section {
+  position: relative;
+}
   <style>
     :root {
       --navy: #243b63;
