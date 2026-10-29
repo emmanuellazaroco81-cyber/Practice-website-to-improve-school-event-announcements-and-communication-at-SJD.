@@ -492,6 +492,71 @@ footer,
 section {
   position: relative;
 }
+    
+/* ADMIN LOGIN BUTTON */
+.admin-login-button {
+  border: 1px solid #ff9bad;
+  background: linear-gradient(
+    145deg,
+    #ff7185,
+    #e20c3d 55%,
+    #8f001f
+  );
+  color: white;
+  padding: 12px 20px;
+  border-radius: 999px;
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 800;
+  letter-spacing: 0.5px;
+  cursor: pointer;
+
+  box-shadow: 0 4px 12px rgba(217, 11, 47, 0.3);
+
+  transition: box-shadow 0.2s ease,
+              background 0.2s ease;
+}
+
+/* NEON HOVER EFFECT */
+.admin-login-button:hover {
+  background: linear-gradient(
+    145deg,
+    #ff8497,
+    #ff1744 55%,
+    #a00025
+  );
+
+  box-shadow:
+    0 0 8px #ff1744,
+    0 0 18px #ff1744,
+    0 0 32px rgba(255, 23, 68, 0.7);
+
+  animation: admin-shake 0.35s ease-in-out;
+}
+
+/* LITTLE SHAKE */
+@keyframes admin-shake {
+  0%, 100% {
+    transform: translateX(0) rotate(0);
+  }
+  25% {
+    transform: translateX(-2px) rotate(-1deg);
+  }
+  50% {
+    transform: translateX(2px) rotate(1deg);
+  }
+  75% {
+    transform: translateX(-1px) rotate(-0.5deg);
+  }
+}
+
+/* RESPECT REDUCED-MOTION SETTINGS */
+@media (prefers-reduced-motion: reduce) {
+  .admin-login-button:hover {
+    animation: none;
+  }
+}
+
   </style>
 </head>
 
