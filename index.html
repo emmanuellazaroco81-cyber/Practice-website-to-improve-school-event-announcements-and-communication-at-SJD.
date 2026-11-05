@@ -772,6 +772,34 @@
   min-height: 40px;
 }
 
+    /* ADMIN EVENT CARDS */
+.admin-event-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 15px;
+  background: white;
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 16px;
+  margin-bottom: 12px;
+}
+
+.admin-event-item strong {
+  color: var(--navy);
+  font-size: 16px;
+}
+
+.admin-event-item button {
+  margin-top: 0;
+  background: #c94b55;
+  padding: 9px 14px;
+  flex-shrink: 0;
+}
+
+.admin-event-item button:hover {
+  background: #a93640;
+}
 #adminDashboard {
   animation: dashboardFade 0.5s ease;
 }
@@ -1192,7 +1220,7 @@ async function loadAdminEvents() {
 
       const deleteButton = document.createElement("button");
       deleteButton.textContent = "DELETE";
-      deleteButton.style.marginLeft = "15px";
+     eventItem.className = "admin-event-item";
 
       deleteButton.addEventListener("click", async () => {
         const confirmed = confirm(
