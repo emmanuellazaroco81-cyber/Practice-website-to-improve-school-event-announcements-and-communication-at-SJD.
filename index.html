@@ -7,6 +7,7 @@
   <title>SJD School Events</title>
 
   <style>
+    
     :root {
       --navy: #243b63;
       --blue: #dcecff;
@@ -1010,9 +1011,13 @@
 
       loginMessage.textContent = "Login successful! 🎉";
 
-      loginOverlay.classList.remove("show");
+     loginOverlay.classList.remove("show");
 
-      // Admin dashboard will be added next
+document.getElementById("adminDashboard").style.display = "block";
+
+document.getElementById("adminDashboard").scrollIntoView({
+  behavior: "smooth"
+});
     } catch (error) {
       if (
         error.code === "auth/invalid-credential" ||
