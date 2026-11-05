@@ -861,57 +861,10 @@
         <span class="text-link">Upcoming events</span>
       </div>
 
-      <div class="events-grid">
+     <div class="events-grid" id="publicEvents">
+  <p>Loading events...</p>
+</div>
 
-        <article class="event-card">
-          <div class="event-top">
-            <div class="event-icon icon-blue">🎉</div>
-            <span class="tag">SCHOOL LIFE</span>
-          </div>
-
-          <h3>School Spirit Day</h3>
-
-          <p>Show your school spirit and take part in the fun.</p>
-
-          <div class="event-details">
-            <p>📅 <strong>Date:</strong> To be announced</p>
-            <p>📍 <strong>Location:</strong> Confirm with school</p>
-          </div>
-        </article>
-
-        <article class="event-card">
-          <div class="event-top">
-            <div class="event-icon icon-yellow">📚</div>
-            <span class="tag">STUDENT LIFE</span>
-          </div>
-
-          <h3>Club Meeting</h3>
-
-          <p>Connect with other students and explore your interests.</p>
-
-          <div class="event-details">
-            <p>📅 <strong>Date:</strong> To be announced</p>
-            <p>📍 <strong>Location:</strong> Confirm with school</p>
-          </div>
-        </article>
-
-        <article class="event-card">
-          <div class="event-top">
-            <div class="event-icon icon-green">🌱</div>
-            <span class="tag">COMMUNITY</span>
-          </div>
-
-          <h3>Community Service</h3>
-
-          <p>Find ways to get involved and make a positive difference.</p>
-
-          <div class="event-details">
-            <p>📅 <strong>Date:</strong> To be announced</p>
-            <p>📍 <strong>Details:</strong> Confirm with school</p>
-          </div>
-        </article>
-
-      </div>
     </section>
 
     <!-- REMINDER -->
@@ -1156,4 +1109,58 @@ eventForm.addEventListener("submit", async (event) => {
     alert("Could not save the event. Please try again.");
   }
 });
+   // LOAD EVENTS ON THE HOMEPAGE
+async function loadPublicEvents() {
+  const publicEvents = document.getElementById("publicEvents");
+
+  try {
+    const snapshot = await getDocs(collection(db, "events"));
+
+    publicEvents.replaceChildren();
+
+    if (snapshot.empty) {
+      publicEvents.textContent = "No events have been posted yet.";
+      return;
+    }
+
+    snapshot.forEach((doc) => {
+      const eventData = doc.data();
+
+      const card = document.createElement("article");
+      card.className = "event-card";
+
+      const title = document.createElement("h3");
+      title.textContent = eventData.name || "Untitled Event";
+      card.appendChild(title);
+
+      const description = document.createElement("p");
+      description.textContent = eventData.description || "";
+      card.appendChild(description);
+
+      const details = document.createElement("div");
+      details.className = "event-details";
+
+      const date = document.createElement("p");
+      date.textContent = "📅 Date: " + (eventData.date || "To be announced");
+      details.appendChild(date);
+
+      const time = document.createElement("p");
+      time.textContent = "🕒 Time: " + (eventData.time || "To be announced");
+      details.appendChild(time);
+
+      const location = document.createElement("p");
+      location.textContent = "📍 Location: " + (eventData.location || "To be announced");
+      details.appendChild(location);
+
+      card.appendChild(details);
+      publicEvents.appendChild(card);
+    });
+
+  } catch (error) {
+    console.error("Error loading events:", error);
+    publicEvents.textContent = "Could not load events. Please try again later.";
+  }
+}
+
+loadPublicEvents();
 </script>
