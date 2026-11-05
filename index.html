@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -32,6 +33,8 @@
       background: var(--background);
       color: var(--text);
       line-height: 1.6;
+      position: relative;
+      overflow-x: hidden;
     }
 
     a {
@@ -39,6 +42,43 @@
       text-decoration: none;
     }
 
+    /* CATHOLIC-INSPIRED SIDE DECORATIONS */
+    body::before,
+    body::after {
+      position: fixed;
+      top: 120px;
+      bottom: 30px;
+      width: 42px;
+      pointer-events: none;
+      z-index: 0;
+      opacity: 0.45;
+      font-size: 19px;
+      line-height: 2.8;
+      text-align: center;
+      white-space: pre-wrap;
+      content: "✝\A  ❧\A  ✝\A  ❦\A  ✝\A  ❧";
+    }
+
+    body::before {
+      left: 5px;
+      color: #4779bd;
+    }
+
+    body::after {
+      right: 5px;
+      color: #78947b;
+      transform: scaleX(-1);
+    }
+
+    nav,
+    header,
+    main,
+    footer,
+    section {
+      position: relative;
+    }
+
+    /* NAVIGATION BAR */
     .navbar {
       background: rgba(255, 255, 255, 0.96);
       border-bottom: 1px solid var(--border);
@@ -90,6 +130,62 @@
       border-radius: 14px;
     }
 
+    /* RED NEON ADMIN LOGIN BUTTON */
+    .admin-login-button {
+      border: 1px solid #ff9bad;
+      background: linear-gradient(
+        145deg,
+        #ff7185,
+        #e20c3d 55%,
+        #8f001f
+      );
+      color: white;
+      padding: 12px 20px;
+      border-radius: 999px;
+      font-family: inherit;
+      font-size: 13px;
+      font-weight: 800;
+      letter-spacing: 0.5px;
+      cursor: pointer;
+      box-shadow: 0 4px 12px rgba(217, 11, 47, 0.3);
+      transition: box-shadow 0.2s ease;
+    }
+
+    .admin-login-button:hover {
+      background: linear-gradient(
+        145deg,
+        #ff8497,
+        #ff1744 55%,
+        #a00025
+      );
+
+      box-shadow:
+        0 0 8px #ff1744,
+        0 0 18px #ff1744,
+        0 0 32px rgba(255, 23, 68, 0.7);
+
+      animation: admin-shake 0.35s ease-in-out;
+    }
+
+    @keyframes admin-shake {
+      0%, 100% {
+        transform: translateX(0) rotate(0);
+      }
+
+      25% {
+        transform: translateX(-2px) rotate(-1deg);
+      }
+
+      50% {
+        transform: translateX(2px) rotate(1deg);
+      }
+
+      75% {
+        transform: translateX(-1px) rotate(-0.5deg);
+      }
+    }
+
+    /* HERO SECTION */
     .hero {
       max-width: 1120px;
       margin: 42px auto 28px;
@@ -189,6 +285,7 @@
       left: 0;
     }
 
+    /* MAIN CONTENT */
     main {
       max-width: 1120px;
       margin: 0 auto;
@@ -258,6 +355,7 @@
       margin-bottom: 0;
     }
 
+    /* EVENT CARDS */
     .events-grid {
       display: grid;
       grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -345,6 +443,7 @@
       color: var(--navy);
     }
 
+    /* REMINDER */
     .reminder-box {
       background: #fff4d8;
       border-radius: 23px;
@@ -371,6 +470,7 @@
       margin-bottom: 0;
     }
 
+    /* FOOTER */
     footer {
       text-align: center;
       background: white;
@@ -384,6 +484,135 @@
       color: var(--navy);
     }
 
+    /* LOGIN SCREEN BACKGROUND */
+    .login-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 1000;
+      background: rgba(12, 20, 40, 0.72);
+      backdrop-filter: blur(6px);
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .login-overlay.show {
+      display: flex;
+    }
+
+    /* LOGIN PANEL */
+    .login-panel {
+      position: relative;
+      width: 100%;
+      max-width: 390px;
+      padding: 32px 26px;
+      background: linear-gradient(160deg, #ffffff, #f0f5ff);
+      border: 2px solid #ff526d;
+      border-radius: 26px;
+      text-align: center;
+      box-shadow:
+        0 0 20px rgba(255, 23, 68, 0.35),
+        0 0 45px rgba(255, 23, 68, 0.2);
+      animation: login-pop 0.25s ease-out;
+    }
+
+    @keyframes login-pop {
+      from {
+        opacity: 0;
+        transform: scale(0.9);
+      }
+
+      to {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+
+    .login-panel h2 {
+      color: #c90032;
+      margin-top: 8px;
+      margin-bottom: 8px;
+    }
+
+    .login-description {
+      color: #596579;
+      font-size: 14px;
+      margin-bottom: 24px;
+    }
+
+    .login-close {
+      position: absolute;
+      top: 12px;
+      right: 15px;
+      border: none;
+      background: transparent;
+      color: #8f001f;
+      font-size: 27px;
+      cursor: pointer;
+    }
+
+    .login-form {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      text-align: left;
+    }
+
+    .login-form label {
+      color: #26354d;
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .login-form input {
+      display: block;
+      width: 100%;
+      margin-top: 6px;
+      padding: 12px;
+      border: 1px solid #cbd5e1;
+      border-radius: 12px;
+      font: inherit;
+      background: white;
+    }
+
+    .login-form input:focus {
+      outline: 2px solid #ff526d;
+      border-color: transparent;
+    }
+
+    .login-submit {
+      margin-top: 8px;
+      padding: 13px;
+      border: 0;
+      border-radius: 999px;
+      color: white;
+      background: linear-gradient(
+        145deg,
+        #ff7185,
+        #e20c3d,
+        #8f001f
+      );
+      font-weight: 800;
+      cursor: pointer;
+      box-shadow: 0 4px 12px rgba(217, 11, 47, 0.25);
+      transition: box-shadow 0.2s ease;
+    }
+
+    .login-submit:hover {
+      box-shadow:
+        0 0 10px #ff1744,
+        0 0 24px rgba(255, 23, 68, 0.65);
+    }
+
+    .login-message {
+      color: #a00025;
+      font-size: 13px;
+      text-align: center;
+      margin-bottom: 0;
+    }
+
+    /* MOBILE DESIGN */
     @media (max-width: 800px) {
       .navbar {
         padding: 15px 5%;
@@ -451,116 +680,22 @@
         align-items: flex-start;
       }
     }
-    /* Subtle Catholic-inspired side decorations */
-body {
-  position: relative;
-  overflow-x: hidden;
-}
 
-body::before,
-body::after {
-  position: fixed;
-  top: 120px;
-  bottom: 30px;
-  width: 42px;
-  pointer-events: none;
-  z-index: 0;
-  opacity: 0.45;
-  font-size: 19px;
-  line-height: 2.8;
-  text-align: center;
-  white-space: pre-wrap;
-  content: "✝\A  ❧\A  ✝\A  ❦\A  ✝\A  ❧";
-}
+    @media (prefers-reduced-motion: reduce) {
+      .admin-login-button:hover {
+        animation: none;
+      }
 
-body::before {
-  left: 5px;
-  color: #4779bd;
-}
-
-body::after {
-  right: 5px;
-  color: #78947b;
-  transform: scaleX(-1);
-}
-
-/* Keep the website content above the decorations */
-nav,
-header,
-main,
-footer,
-section {
-  position: relative;
-}
-    
-/* ADMIN LOGIN BUTTON */
-.admin-login-button {
-  border: 1px solid #ff9bad;
-  background: linear-gradient(
-    145deg,
-    #ff7185,
-    #e20c3d 55%,
-    #8f001f
-  );
-  color: white;
-  padding: 12px 20px;
-  border-radius: 999px;
-  font-family: inherit;
-  font-size: 13px;
-  font-weight: 800;
-  letter-spacing: 0.5px;
-  cursor: pointer;
-
-  box-shadow: 0 4px 12px rgba(217, 11, 47, 0.3);
-
-  transition: box-shadow 0.2s ease,
-              background 0.2s ease;
-}
-
-/* NEON HOVER EFFECT */
-.admin-login-button:hover {
-  background: linear-gradient(
-    145deg,
-    #ff8497,
-    #ff1744 55%,
-    #a00025
-  );
-
-  box-shadow:
-    0 0 8px #ff1744,
-    0 0 18px #ff1744,
-    0 0 32px rgba(255, 23, 68, 0.7);
-
-  animation: admin-shake 0.35s ease-in-out;
-}
-
-/* LITTLE SHAKE */
-@keyframes admin-shake {
-  0%, 100% {
-    transform: translateX(0) rotate(0);
-  }
-  25% {
-    transform: translateX(-2px) rotate(-1deg);
-  }
-  50% {
-    transform: translateX(2px) rotate(1deg);
-  }
-  75% {
-    transform: translateX(-1px) rotate(-0.5deg);
-  }
-}
-
-/* RESPECT REDUCED-MOTION SETTINGS */
-@media (prefers-reduced-motion: reduce) {
-  .admin-login-button:hover {
-    animation: none;
-  }
-}
-
+      .login-panel {
+        animation: none;
+      }
+    }
   </style>
 </head>
 
 <body>
+
+  <!-- NAVIGATION BAR -->
   <nav class="navbar">
     <a class="brand" href="#home">
       <span class="brand-icon">✦</span>
@@ -573,34 +708,45 @@ section {
       <a href="#reminders">Reminders</a>
       <a class="nav-button" href="#events">Explore events ↗</a>
 
-      
-<button type="button" class="admin-login-button">
-  ADMIN LOGIN ✦
-</button>
+      <button
+        type="button"
+        class="admin-login-button"
+        id="adminLoginButton">
+        ADMIN LOGIN ✦
+      </button>
     </div>
   </nav>
 
+  <!-- HERO SECTION -->
   <header class="hero" id="home">
     <div class="hero-box">
       <div>
         <span class="eyebrow">YOUR SCHOOL, ALL IN ONE PLACE</span>
+
         <h1>Stay in the<br>loop. ✨</h1>
+
         <p>
           Your place for school events, important dates,
           and reminders. Everything you need to stay up to date.
         </p>
-        <a class="primary-button" href="#events">Explore upcoming events →</a>
+
+        <a class="primary-button" href="#events">
+          Explore upcoming events →
+        </a>
       </div>
 
       <div class="hero-art" aria-hidden="true">📅</div>
     </div>
   </header>
 
+  <!-- MAIN CONTENT -->
   <main>
     <section class="announcement" aria-label="Important announcement">
       <div class="announcement-icon">📣</div>
+
       <div>
         <h3>A little heads-up!</h3>
+
         <p>
           Check official school announcements to confirm event dates,
           deadlines, and any changes.
@@ -608,23 +754,29 @@ section {
       </div>
     </section>
 
+    <!-- EVENTS -->
     <section id="events">
       <div class="section-heading">
         <div>
           <h2>What's happening? 👀</h2>
           <p>Keep an eye on what's coming up around school.</p>
         </div>
+
         <span class="text-link">Upcoming events</span>
       </div>
 
       <div class="events-grid">
+
         <article class="event-card">
           <div class="event-top">
             <div class="event-icon icon-blue">🎉</div>
             <span class="tag">SCHOOL LIFE</span>
           </div>
+
           <h3>School Spirit Day</h3>
+
           <p>Show your school spirit and take part in the fun.</p>
+
           <div class="event-details">
             <p>📅 <strong>Date:</strong> To be announced</p>
             <p>📍 <strong>Location:</strong> Confirm with school</p>
@@ -636,8 +788,11 @@ section {
             <div class="event-icon icon-yellow">📚</div>
             <span class="tag">STUDENT LIFE</span>
           </div>
+
           <h3>Club Meeting</h3>
+
           <p>Connect with other students and explore your interests.</p>
+
           <div class="event-details">
             <p>📅 <strong>Date:</strong> To be announced</p>
             <p>📍 <strong>Location:</strong> Confirm with school</p>
@@ -649,20 +804,27 @@ section {
             <div class="event-icon icon-green">🌱</div>
             <span class="tag">COMMUNITY</span>
           </div>
+
           <h3>Community Service</h3>
+
           <p>Find ways to get involved and make a positive difference.</p>
+
           <div class="event-details">
             <p>📅 <strong>Date:</strong> To be announced</p>
             <p>📍 <strong>Details:</strong> Confirm with school</p>
           </div>
         </article>
+
       </div>
     </section>
 
+    <!-- REMINDER -->
     <section class="reminder-box" id="reminders">
       <div class="reminder-emoji">💡</div>
+
       <div>
         <h2>Don't miss the little things!</h2>
+
         <p>
           Before an event, double-check the time, location,
           registration requirements, and anything you need to bring.
@@ -671,10 +833,111 @@ section {
     </section>
   </main>
 
+  <!-- FOOTER -->
   <footer>
     <strong>SJD School Events</strong>
+
     <p>Student Practice Website · Stay informed, stay connected.</p>
+
     <p>Practice examples only. Confirm event details with the school.</p>
   </footer>
+
+  <!-- ADMIN LOGIN POPUP -->
+  <div class="login-overlay" id="loginOverlay">
+    <div
+      class="login-panel"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="loginTitle">
+
+      <button
+        type="button"
+        class="login-close"
+        id="closeLogin"
+        aria-label="Close login">
+        &times;
+      </button>
+
+      <div style="font-size: 38px;">✝</div>
+
+      <h2 id="loginTitle">Admin Login</h2>
+
+      <p class="login-description">
+        Sign in to manage school events.
+      </p>
+
+      <form class="login-form" id="loginForm">
+
+        <label for="adminEmail">
+          Email Address
+
+          <input
+            type="email"
+            id="adminEmail"
+            placeholder="Enter your admin email"
+            autocomplete="username"
+            required>
+        </label>
+
+        <label for="adminPassword">
+          Password
+
+          <input
+            type="password"
+            id="adminPassword"
+            placeholder="Enter your password"
+            autocomplete="current-password"
+            required>
+        </label>
+
+        <button type="submit" class="login-submit">
+          LOG IN ✦
+        </button>
+
+        <p
+          class="login-message"
+          id="loginMessage"
+          aria-live="polite">
+        </p>
+
+      </form>
+    </div>
+  </div>
+
+  <!-- JAVASCRIPT FOR OPENING AND CLOSING LOGIN -->
+  <script>
+    const loginOverlay = document.getElementById("loginOverlay");
+    const adminLoginButton = document.getElementById("adminLoginButton");
+    const closeLoginButton = document.getElementById("closeLogin");
+    const loginForm = document.getElementById("loginForm");
+    const loginMessage = document.getElementById("loginMessage");
+
+    // Open the login popup
+    adminLoginButton.addEventListener("click", () => {
+      loginOverlay.classList.add("show");
+      loginMessage.textContent = "";
+    });
+
+    // Close the popup using the X button
+    closeLoginButton.addEventListener("click", () => {
+      loginOverlay.classList.remove("show");
+    });
+
+    // Close the popup by clicking outside the panel
+    loginOverlay.addEventListener("click", (event) => {
+      if (event.target === loginOverlay) {
+        loginOverlay.classList.remove("show");
+      }
+    });
+
+    // Temporary login message until Firebase is connected
+    loginForm.addEventListener("submit", (event) => {
+      event.preventDefault();
+
+      loginMessage.textContent =
+        "Login is not connected yet. Firebase setup comes next!";
+    });
+  </script>
+
 </body>
 </html>
