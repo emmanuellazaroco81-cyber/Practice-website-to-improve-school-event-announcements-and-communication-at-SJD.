@@ -841,7 +841,46 @@
 
     <p>Practice examples only. Confirm event details with the school.</p>
   </footer>
+<!-- ADMIN DASHBOARD -->
+<section id="adminDashboard" class="admin-dashboard" style="display: none;">
 
+  <h2>SJD Admin Dashboard ✨</h2>
+  <p>Welcome! You can manage school events here.</p>
+
+  <div class="dashboard-card">
+    <h3>Add a New Event</h3>
+
+    <form id="eventForm">
+
+      <label>Event Name</label>
+      <input type="text" id="eventName" placeholder="Example: School Spirit Day" required>
+
+      <label>Event Date</label>
+      <input type="date" id="eventDate" required>
+
+      <label>Event Time</label>
+      <input type="time" id="eventTime">
+
+      <label>Event Location</label>
+      <input type="text" id="eventLocation" placeholder="Example: School Gym">
+
+      <label>Event Description</label>
+      <textarea id="eventDescription" placeholder="Write a short description..."></textarea>
+
+      <button type="submit">ADD EVENT ✦</button>
+
+    </form>
+  </div>
+
+  <div class="dashboard-card">
+    <h3>Current Events</h3>
+    <div id="adminEventList">
+      <p>Your events will appear here.</p>
+    </div>
+  </div>
+
+</section>
+<!-- END ADMIN DASHBOARD -->
   <!-- ADMIN LOGIN POPUP -->
   <div class="login-overlay" id="loginOverlay">
     <div
