@@ -839,7 +839,13 @@
         console.warn("Theme preference could not be saved.");
       }
     }
-setTheme(false);
+try {
+  const savedTheme = localStorage.getItem("sjd-theme");
+
+  setTheme(savedTheme === "dark");
+} catch (error) {
+  setTheme(false);
+}
     themeToggle.addEventListener("click", () => {
       setTheme(!document.body.classList.contains("dark-mode"));
     });
