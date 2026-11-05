@@ -7,69 +7,19 @@
   <title>SJD School Events</title>
 
   <style>
-    
     :root {
       --navy: #243b63;
       --blue: #dcecff;
       --blue-dark: #4779bd;
       --yellow: #ffe6a3;
       --background: #f6f9fe;
-      --white: #ffffff;
-      --text: #34435b;
-      --muted: #758197;
-      --border: #e8edf5;
+      --surface: #ffffff;
+      --text: #243b63;
+      --muted: #66758c;
+      --border: #dce6f3;
+      --shadow: 0 8px 25px rgba(36, 59, 99, 0.09);
     }
-/* DARK MODE COLORS */
-body.dark-mode {
-  --navy: #d6e8ff;
-  --light-blue: #172b45;
-  --blue-dark: #75baff;
-  --yellow: #ffe6a3;
-  --background: #080f1c;
-  --white: #111d30;
-  --text: #e8f1ff;
-  --muted: #a8bad2;
-  --border: #263b59;
 
-  background: var(--background);
-  color: var(--text);
-}
-    /* SUBTLE NEON LIGHT EFFECTS */
-body.dark-mode::before {
-  content: "";
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 4px;
-  background: linear-gradient(
-    90deg,
-    transparent,
-    #36cfff,
-    #a66bff,
-    #36cfff,
-    transparent
-  );
-  background-size: 200% 100%;
-  animation: neonTravel 7s linear infinite;
-  z-index: 9999;
-  pointer-events: none;
-}
-
-body.dark-mode::after {
-  content: "";
-  position: fixed;
-  inset: 0;
-  border-left: 2px solid rgba(54, 207, 255, 0.35);
-  border-right: 2px solid rgba(166, 107, 255, 0.35);
-  pointer-events: none;
-  z-index: 9998;
-}
-
-@keyframes neonTravel {
-  from { background-position: 200% 0; }
-  to { background-position: -200% 0; }
-}
     * {
       box-sizing: border-box;
     }
@@ -86,1257 +36,1097 @@ body.dark-mode::after {
       line-height: 1.6;
       position: relative;
       overflow-x: hidden;
-      body {
-  margin: 0;
-  font-family: "Segoe UI", Arial, sans-serif;
-  background: var(--background);
-  color: var(--text);
-  line-height: 1.6;
-  position: relative;
-  overflow-x: hidden;
-  transition: background 0.4s ease, color 0.4s ease;
-}
+      transition: background 0.4s ease, color 0.4s ease;
     }
 
-    a {
-      color: inherit;
-      text-decoration: none;
+    button, input, textarea {
+      font: inherit;
     }
 
-    /* CATHOLIC-INSPIRED SIDE DECORATIONS */
+    button {
+      cursor: pointer;
+    }
+
+    /* Subtle Catholic-school decorations */
     body::before,
     body::after {
       position: fixed;
-      top: 120px;
-      bottom: 30px;
-      width: 42px;
+      top: 25%;
+      color: rgba(71, 121, 189, 0.12);
+      font-size: 35px;
+      line-height: 2.2;
+      white-space: pre;
       pointer-events: none;
-      z-index: 0;
-      opacity: 0.45;
-      font-size: 19px;
-      line-height: 2.8;
-      text-align: center;
-      white-space: pre-wrap;
-      content: "✝\A  ❧\A  ✝\A  ❦\A  ✝\A  ❧";
+      z-index: -1;
     }
 
     body::before {
-      left: 5px;
-      color: #4779bd;
+      content: "✝  ❧\A  ❦  ✝\A ❧  ❦";
+      left: 10px;
     }
 
     body::after {
-      right: 5px;
-      color: #78947b;
-      transform: scaleX(-1);
+      content: "❦  ✝\A ❧  ❦\A ✝  ❧";
+      right: 10px;
     }
 
-    nav,
-    header,
-    main,
-    footer,
-    section {
-      position: relative;
-    }
-
-    /* NAVIGATION BAR */
     .navbar {
-      background: rgba(255, 255, 255, 0.96);
-      border-bottom: 1px solid var(--border);
-      padding: 15px 7%;
+      position: sticky;
+      top: 0;
+      z-index: 20;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 20px;
-      flex-wrap: wrap;
+      gap: 15px;
+      padding: 15px 7%;
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+      box-shadow: 0 3px 15px rgba(36, 59, 99, 0.05);
+      transition: background 0.4s, border-color 0.4s;
     }
 
     .brand {
-      display: flex;
-      align-items: center;
-      gap: 11px;
-      font-size: 19px;
-      font-weight: 750;
+      font-size: 1.15rem;
+      font-weight: 800;
       color: var(--navy);
-    }
-
-    .brand-icon {
-      background: var(--blue);
-      width: 43px;
-      height: 43px;
-      border-radius: 15px;
-      display: grid;
-      place-items: center;
-      font-size: 22px;
+      white-space: nowrap;
     }
 
     .nav-links {
       display: flex;
-      gap: 27px;
       align-items: center;
+      gap: 20px;
       flex-wrap: wrap;
-      font-size: 14px;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: var(--text);
       font-weight: 600;
-      color: var(--muted);
+      font-size: 0.93rem;
     }
 
     .nav-links a:hover {
       color: var(--blue-dark);
     }
 
-    .nav-button {
-      background: var(--navy);
-      color: white !important;
-      padding: 10px 17px;
-      border-radius: 14px;
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
     }
-/* DARK MODE TOGGLE */
-.theme-toggle {
-  padding: 10px 16px;
-  border: 1px solid var(--border);
-  border-radius: 20px;
-  background: white;
-  color: var(--navy);
-  font-weight: bold;
-  cursor: pointer;
-  transition: 0.3s ease;
-}
 
-.theme-toggle:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(36, 59, 99, 0.15);
-}
-    /* RED NEON ADMIN LOGIN BUTTON */
+    .theme-toggle {
+      border: 1px solid var(--border);
+      border-radius: 30px;
+      background: var(--surface);
+      color: var(--text);
+      padding: 9px 13px;
+      font-weight: 700;
+    }
+
     .admin-login-button {
-      border: 1px solid #ff9bad;
-      background: linear-gradient(
-        145deg,
-        #ff7185,
-        #e20c3d 55%,
-        #8f001f
-      );
       color: white;
-      padding: 12px 20px;
-      border-radius: 999px;
-      font-family: inherit;
-      font-size: 13px;
+      border: 1px solid #ff8585;
+      border-radius: 25px;
+      padding: 10px 17px;
       font-weight: 800;
-      letter-spacing: 0.5px;
-      cursor: pointer;
-      box-shadow: 0 4px 12px rgba(217, 11, 47, 0.3);
-      transition: box-shadow 0.2s ease;
+      background: linear-gradient(135deg, #ff4141, #b90040);
+      box-shadow: 0 0 9px rgba(255, 50, 90, 0.65);
+      transition: transform 0.2s, box-shadow 0.2s;
     }
 
     .admin-login-button:hover {
-      background: linear-gradient(
-        145deg,
-        #ff8497,
-        #ff1744 55%,
-        #a00025
-      );
-
-      box-shadow:
-        0 0 8px #ff1744,
-        0 0 18px #ff1744,
-        0 0 32px rgba(255, 23, 68, 0.7);
-
-      animation: admin-shake 0.35s ease-in-out;
+      transform: translateY(-2px);
+      box-shadow: 0 0 16px rgba(255, 50, 90, 0.85);
     }
 
-    @keyframes admin-shake {
-      0%, 100% {
-        transform: translateX(0) rotate(0);
-      }
-
-      25% {
-        transform: translateX(-2px) rotate(-1deg);
-      }
-
-      50% {
-        transform: translateX(2px) rotate(1deg);
-      }
-
-      75% {
-        transform: translateX(-1px) rotate(-0.5deg);
-      }
+    .container {
+      width: min(1100px, 88%);
+      margin: auto;
     }
 
-    /* HERO SECTION */
     .hero {
-      max-width: 1120px;
-      margin: 42px auto 28px;
-      padding: 0 24px;
+      padding: 75px 0 45px;
     }
 
     .hero-box {
-      background: var(--blue);
-      border-radius: 30px;
-      padding: 54px 50px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 30px;
+      position: relative;
       overflow: hidden;
+      padding: 55px 35px;
+      border-radius: 28px;
+      background: linear-gradient(135deg, var(--blue), #edf4ff);
+      text-align: center;
+      box-shadow: var(--shadow);
+      transition: background 0.4s, box-shadow 0.4s;
     }
 
-    .eyebrow {
-      display: inline-block;
-      background: white;
-      color: var(--blue-dark);
-      padding: 7px 13px;
-      border-radius: 30px;
-      font-size: 12px;
-      font-weight: 750;
-      letter-spacing: 0.4px;
-      margin-bottom: 15px;
-    }
-
-    h1, h2, h3, p {
-      margin-top: 0;
-    }
-
-    h1 {
+    .hero-box h1 {
+      margin: 0 0 10px;
       color: var(--navy);
-      font-size: clamp(34px, 5vw, 52px);
-      letter-spacing: -1.8px;
-      line-height: 1.13;
-      margin-bottom: 16px;
+      font-size: clamp(2.2rem, 6vw, 3.5rem);
+      line-height: 1.2;
     }
 
-    .hero p {
-      max-width: 480px;
-      color: #536b8b;
-      font-size: 16px;
-      margin-bottom: 25px;
+    .hero-box p {
+      max-width: 600px;
+      margin: 12px auto 22px;
+      color: var(--muted);
+      font-size: 1.08rem;
     }
 
+    .explore-button,
     .primary-button {
       display: inline-block;
-      background: var(--navy);
-      color: white;
-      padding: 13px 20px;
-      border-radius: 15px;
-      font-weight: 650;
-      font-size: 14px;
-      transition: transform 0.2s, background 0.2s;
-    }
-
-    .primary-button:hover {
+      border: none;
+      border-radius: 25px;
+      padding: 12px 22px;
       background: var(--blue-dark);
+      color: white;
+      font-weight: 800;
+      text-decoration: none;
+      transition: transform 0.2s, filter 0.2s;
+    }
+
+    .explore-button:hover,
+    .primary-button:hover {
       transform: translateY(-2px);
+      filter: brightness(1.1);
     }
 
-    .hero-art {
-      min-width: 170px;
-      width: 210px;
-      height: 210px;
-      border-radius: 50%;
-      background: #ffffffa8;
-      display: grid;
-      place-items: center;
-      position: relative;
-      font-size: 88px;
-    }
-
-    .hero-art::before,
-    .hero-art::after {
-      content: "";
-      position: absolute;
-      border-radius: 50%;
-    }
-
-    .hero-art::before {
+    .announcement {
+      margin: 30px 0;
+      padding: 20px 24px;
+      border-radius: 18px;
+      border-left: 5px solid #e4b64c;
       background: var(--yellow);
-      width: 43px;
-      height: 43px;
-      top: 5px;
-      right: 8px;
+      color: #5b4b27;
+      box-shadow: var(--shadow);
+      transition: background 0.4s, color 0.4s;
     }
 
-    .hero-art::after {
-      background: #b9e6d6;
-      width: 27px;
-      height: 27px;
-      bottom: 13px;
-      left: 0;
-    }
-
-    /* MAIN CONTENT */
-    main {
-      max-width: 1120px;
-      margin: 0 auto;
-      padding: 12px 24px 50px;
+    .announcement h2 {
+      margin: 0 0 5px;
+      font-size: 1.15rem;
     }
 
     .section-heading {
-      display: flex;
-      align-items: end;
-      justify-content: space-between;
-      gap: 16px;
-      margin: 28px 0 20px;
-      flex-wrap: wrap;
+      margin: 55px 0 22px;
     }
 
     .section-heading h2 {
+      margin: 0;
+      font-size: 1.9rem;
       color: var(--navy);
-      font-size: 27px;
-      letter-spacing: -0.6px;
-      margin-bottom: 4px;
     }
 
     .section-heading p {
       color: var(--muted);
-      margin-bottom: 0;
-      font-size: 14px;
+      margin: 5px 0 0;
     }
 
-    .text-link {
-      color: var(--blue-dark);
-      font-size: 14px;
-      font-weight: 700;
-    }
-
-    .announcement {
-      background: white;
-      border: 1px solid var(--border);
-      border-radius: 22px;
-      padding: 22px 25px;
-      display: flex;
-      align-items: center;
-      gap: 17px;
-      margin-bottom: 30px;
-      box-shadow: 0 5px 20px #243b6308;
-    }
-
-    .announcement-icon {
-      width: 50px;
-      height: 50px;
-      flex-shrink: 0;
-      display: grid;
-      place-items: center;
-      background: #fff1c9;
-      border-radius: 16px;
-      font-size: 23px;
-    }
-
-    .announcement h3 {
-      color: var(--navy);
-      font-size: 16px;
-      margin-bottom: 4px;
-    }
-
-    .announcement p {
-      color: var(--muted);
-      font-size: 14px;
-      margin-bottom: 0;
-    }
-
-    /* EVENT CARDS */
     .events-grid {
       display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 20px;
+      grid-template-columns: repeat(auto-fit, minmax(245px, 1fr));
+      gap: 22px;
+      margin-bottom: 50px;
     }
 
     .event-card {
-      background: white;
-      border: 1px solid var(--border);
-      border-radius: 23px;
       padding: 23px;
-      box-shadow: 0 6px 22px #243b6308;
-      transition: transform 0.2s, box-shadow 0.2s;
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      background: var(--surface);
+      box-shadow: var(--shadow);
+      transition: transform 0.2s, background 0.4s, border-color 0.4s;
     }
 
     .event-card:hover {
       transform: translateY(-4px);
-      box-shadow: 0 12px 27px #243b6312;
-    }
-
-    .event-top {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 8px;
-      margin-bottom: 20px;
-    }
-
-    .event-icon {
-      width: 51px;
-      height: 51px;
-      display: grid;
-      place-items: center;
-      border-radius: 17px;
-      font-size: 25px;
-    }
-
-    .icon-blue {
-      background: #e2eeff;
-    }
-
-    .icon-yellow {
-      background: #fff0c8;
-    }
-
-    .icon-green {
-      background: #ddf5e9;
-    }
-
-    .tag {
-      display: inline-block;
-      background: #f0f4fa;
-      color: #65748b;
-      padding: 6px 10px;
-      border-radius: 20px;
-      font-size: 11px;
-      font-weight: 750;
     }
 
     .event-card h3 {
+      margin: 0 0 12px;
       color: var(--navy);
-      font-size: 18px;
-      margin-bottom: 8px;
+      font-size: 1.25rem;
     }
 
-    .event-card > p {
-      font-size: 14px;
+    .event-detail {
+      margin: 7px 0;
       color: var(--muted);
-      margin-bottom: 19px;
-      min-height: 45px;
+      font-size: 0.94rem;
+      overflow-wrap: anywhere;
     }
 
-    .event-details {
-      border-top: 1px solid var(--border);
-      padding-top: 15px;
-      font-size: 13px;
-      color: #596a83;
+    .event-description {
+      margin-top: 13px;
+      color: var(--text);
+      overflow-wrap: anywhere;
     }
 
-    .event-details p {
-      margin-bottom: 7px;
+    .empty-message {
+      grid-column: 1 / -1;
+      padding: 30px;
+      border: 1px dashed var(--border);
+      border-radius: 18px;
+      text-align: center;
+      color: var(--muted);
+      background: var(--surface);
     }
 
-    .event-details strong {
-      color: var(--navy);
-    }
-
-    /* REMINDER */
     .reminder-box {
-      background: #fff4d8;
-      border-radius: 23px;
-      padding: 27px 30px;
-      margin-top: 34px;
-      display: flex;
-      align-items: center;
-      gap: 18px;
-    }
-
-    .reminder-box .reminder-emoji {
-      font-size: 35px;
+      margin: 40px 0 65px;
+      padding: 28px;
+      border-radius: 22px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow);
     }
 
     .reminder-box h2 {
+      margin-top: 0;
       color: var(--navy);
-      font-size: 20px;
-      margin-bottom: 5px;
     }
 
     .reminder-box p {
-      color: #756b54;
-      font-size: 14px;
-      margin-bottom: 0;
-    }
-
-    /* FOOTER */
-    footer {
-      text-align: center;
-      background: white;
-      border-top: 1px solid var(--border);
-      padding: 27px 20px;
       color: var(--muted);
-      font-size: 13px;
     }
 
-    footer strong {
-      color: var(--navy);
+    footer {
+      padding: 28px 15px;
+      background: var(--navy);
+      color: white;
+      text-align: center;
     }
 
-    /* LOGIN SCREEN BACKGROUND */
-    .login-overlay {
+    footer p {
+      margin: 5px;
+    }
+
+    .practice-note {
+      font-size: 0.85rem;
+      opacity: 0.8;
+    }
+
+    /* Login popup */
+    .modal {
       display: none;
       position: fixed;
       inset: 0;
-      z-index: 1000;
-      background: rgba(12, 20, 40, 0.72);
-      backdrop-filter: blur(6px);
+      z-index: 100;
       align-items: center;
       justify-content: center;
       padding: 20px;
+      background: rgba(10, 20, 40, 0.72);
     }
 
-    .login-overlay.show {
+    .modal.show {
       display: flex;
     }
 
-    /* LOGIN PANEL */
     .login-panel {
-      position: relative;
-      width: 100%;
-      max-width: 390px;
-      padding: 32px 26px;
-      background: linear-gradient(160deg, #ffffff, #f0f5ff);
-      border: 2px solid #ff526d;
-      border-radius: 26px;
-      text-align: center;
-      box-shadow:
-        0 0 20px rgba(255, 23, 68, 0.35),
-        0 0 45px rgba(255, 23, 68, 0.2);
-      animation: login-pop 0.25s ease-out;
-    }
-
-    @keyframes login-pop {
-      from {
-        opacity: 0;
-        transform: scale(0.9);
-      }
-
-      to {
-        opacity: 1;
-        transform: scale(1);
-      }
+      width: min(420px, 100%);
+      padding: 30px;
+      border-radius: 22px;
+      background: white;
+      color: #243b63;
+      box-shadow: 0 0 25px rgba(255, 70, 100, 0.3);
     }
 
     .login-panel h2 {
-      color: #c90032;
-      margin-top: 8px;
-      margin-bottom: 8px;
+      margin-top: 0;
     }
 
-    .login-description {
-      color: #596579;
-      font-size: 14px;
-      margin-bottom: 24px;
-    }
-
-    .login-close {
-      position: absolute;
-      top: 12px;
-      right: 15px;
+    .close-button {
+      float: right;
       border: none;
       background: transparent;
-      color: #8f001f;
-      font-size: 27px;
-      cursor: pointer;
+      color: #555;
+      font-size: 1.5rem;
     }
 
-    .login-form {
+    .login-panel input,
+    .admin-panel input,
+    .admin-panel textarea {
+      display: block;
+      width: 100%;
+      margin: 9px 0 15px;
+      padding: 12px;
+      border: 1px solid #ccd6e5;
+      border-radius: 10px;
+      background: white;
+      color: #243b63;
+    }
+
+    .error-message {
+      min-height: 22px;
+      color: #c62828;
+      font-size: 0.9rem;
+    }
+
+    /* Admin dashboard */
+    .admin-panel {
+      display: none;
+      margin: 50px auto;
+      padding: 30px;
+      border: 1px solid var(--border);
+      border-radius: 22px;
+      background: var(--surface);
+      box-shadow: var(--shadow);
+      transition: background 0.4s, border-color 0.4s;
+    }
+
+    .admin-panel.visible {
+      display: block;
+    }
+
+    .admin-panel h2,
+    .admin-panel h3 {
+      color: var(--navy);
+    }
+
+    .admin-panel label {
+      display: block;
+      font-weight: 700;
+      color: var(--text);
+    }
+
+    .admin-panel textarea {
+      min-height: 95px;
+      resize: vertical;
+    }
+
+    .admin-event {
       display: flex;
-      flex-direction: column;
-      gap: 14px;
-      text-align: left;
+      align-items: center;
+      justify-content: space-between;
+      gap: 15px;
+      padding: 13px;
+      margin: 10px 0;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      background: var(--background);
     }
 
-    .login-form label {
-      color: #26354d;
-      font-size: 13px;
+    .delete-button {
+      border: none;
+      border-radius: 18px;
+      padding: 8px 13px;
+      color: white;
+      background: #c62828;
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+
+    .logout-button {
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 9px 15px;
+      color: var(--text);
+      background: var(--surface);
       font-weight: 700;
     }
 
-    .login-form input {
+    .status-message {
+      min-height: 24px;
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+
+    /* ===================================
+       DARK MODE
+       =================================== */
+
+    body.dark-mode {
+      --navy: #e2eaff;
+      --blue: #18263d;
+      --blue-dark: #4779bd;
+      --yellow: #302a1e;
+      --background: #080d19;
+      --surface: #111a2c;
+      --text: #e3ebff;
+      --muted: #a5b3cb;
+      --border: #293953;
+      --shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+      background: var(--background);
+      color: var(--text);
+    }
+
+    body.dark-mode .navbar {
+      background: rgba(12, 20, 36, 0.96);
+      border-color: #263750;
+      box-shadow: 0 3px 18px rgba(0, 0, 0, 0.35);
+    }
+
+    body.dark-mode .hero-box {
+      background: linear-gradient(135deg, #13243e, #171c38);
+      box-shadow: 0 0 20px rgba(0, 225, 255, 0.09);
+    }
+
+    body.dark-mode .hero-box h1,
+    body.dark-mode .section-heading h2,
+    body.dark-mode .event-card h3,
+    body.dark-mode .reminder-box h2,
+    body.dark-mode .admin-panel h2,
+    body.dark-mode .admin-panel h3 {
+      color: #e7f4ff;
+      text-shadow: 0 0 8px rgba(0, 220, 255, 0.45);
+    }
+
+    body.dark-mode .announcement {
+      background: #292638;
+      color: #f3dfb0;
+      border-left-color: #f1c76a;
+      box-shadow: 0 0 13px rgba(255, 210, 100, 0.12);
+    }
+
+    body.dark-mode .theme-toggle {
+      border-color: #3b5375;
+      background: #17243a;
+      color: #b9f7ff;
+      box-shadow: 0 0 8px rgba(0, 220, 255, 0.2);
+    }
+
+    body.dark-mode .event-card,
+    body.dark-mode .reminder-box,
+    body.dark-mode .admin-panel {
+      box-shadow: 0 0 12px rgba(0, 220, 255, 0.07);
+    }
+
+    body.dark-mode .admin-event {
+      background: #0c1424;
+    }
+
+    body.dark-mode .admin-panel input,
+    body.dark-mode .admin-panel textarea {
+      background: #0b1425;
+      color: #e3ebff;
+      border-color: #344a68;
+    }
+
+    body.dark-mode .nav-links a {
+      color: #dceaff;
+    }
+
+    body.dark-mode .nav-links a:hover {
+      color: #7defff;
+      text-shadow: 0 0 8px rgba(0, 225, 255, 0.6);
+    }
+
+    /* Neon glow frame: top and sides */
+    .neon-frame {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+      overflow: hidden;
+    }
+
+    body.dark-mode .neon-frame {
       display: block;
-      width: 100%;
-      margin-top: 6px;
-      padding: 12px;
-      border: 1px solid #cbd5e1;
-      border-radius: 12px;
-      font: inherit;
-      background: white;
     }
 
-    .login-form input:focus {
-      outline: 2px solid #ff526d;
-      border-color: transparent;
-    }
-
-    .login-submit {
-      margin-top: 8px;
-      padding: 13px;
-      border: 0;
-      border-radius: 999px;
-      color: white;
-      background: linear-gradient(
-        145deg,
-        #ff7185,
-        #e20c3d,
-        #8f001f
+    .neon-frame::before {
+      content: "";
+      position: absolute;
+      top: -130px;
+      left: 8%;
+      right: 8%;
+      height: 250px;
+      background: radial-gradient(
+        ellipse,
+        rgba(0, 225, 255, 0.19) 0%,
+        rgba(90, 70, 255, 0.11) 35%,
+        transparent 72%
       );
-      font-weight: 800;
-      cursor: pointer;
-      box-shadow: 0 4px 12px rgba(217, 11, 47, 0.25);
-      transition: box-shadow 0.2s ease;
+      filter: blur(28px);
     }
 
-    .login-submit:hover {
-      box-shadow:
-        0 0 10px #ff1744,
-        0 0 24px rgba(255, 23, 68, 0.65);
+    .neon-frame::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse at left center,
+          rgba(0, 225, 255, 0.12), transparent 33%),
+        radial-gradient(ellipse at right center,
+          rgba(130, 80, 255, 0.12), transparent 33%);
     }
 
-    .login-message {
-      color: #a00025;
-      font-size: 13px;
-      text-align: center;
-      margin-bottom: 0;
+    body.dark-mode .neon-frame {
+      animation: neonPulse 5s ease-in-out infinite alternate;
     }
 
-    /* MOBILE DESIGN */
-    @media (max-width: 800px) {
+    @keyframes neonPulse {
+      from { opacity: 0.75; }
+      to { opacity: 1; }
+    }
+
+    /* Keep website content above the glow layer */
+    .navbar,
+    main,
+    footer,
+    .admin-panel {
+      position: relative;
+      z-index: 1;
+    }
+
+    @media (max-width: 720px) {
       .navbar {
-        padding: 15px 5%;
+        flex-direction: column;
+        padding: 13px 5%;
       }
 
       .nav-links {
-        gap: 15px;
+        justify-content: center;
+        gap: 14px;
       }
 
-      .hero-box {
-        padding: 38px 30px;
-      }
-
-      .hero-art {
-        width: 145px;
-        height: 145px;
-        min-width: 145px;
-        font-size: 62px;
-      }
-
-      .events-grid {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-      }
-    }
-
-    @media (max-width: 560px) {
-      .navbar {
-        align-items: flex-start;
-      }
-
-      .nav-links {
-        width: 100%;
-        gap: 12px 19px;
-        font-size: 13px;
+      .nav-actions {
+        justify-content: center;
       }
 
       .hero {
-        margin-top: 22px;
-        padding: 0 15px;
+        padding-top: 35px;
       }
 
       .hero-box {
-        padding: 30px 23px;
-        border-radius: 24px;
+        padding: 40px 20px;
       }
 
-      .hero-art {
-        display: none;
+      .container {
+        width: 92%;
       }
 
-      main {
-        padding: 10px 15px 35px;
-      }
-
-      .events-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .announcement {
-        padding: 18px;
-      }
-
-      .reminder-box {
-        padding: 23px 20px;
+      .admin-event {
         align-items: flex-start;
+        flex-direction: column;
       }
     }
-
-    @media (prefers-reduced-motion: reduce) {
-      .admin-login-button:hover {
-        animation: none;
-      }
-
-      .login-panel {
-        animation: none;
-      }
-    }
-    /* ADMIN DASHBOARD STYLING */
-.admin-dashboard {
-  max-width: 1000px;
-  margin: 60px auto;
-  padding: 30px;
-  color: var(--text);
-}
-
-.admin-dashboard h2 {
-  color: var(--navy);
-  text-align: center;
-  font-size: 30px;
-  margin-bottom: 10px;
-}
-
-.admin-dashboard > p {
-  text-align: center;
-  color: var(--muted);
-  margin-bottom: 30px;
-}
-
-.dashboard-card {
-  background: var(--white);
-  border: 1px solid var(--border);
-  border-radius: 18px;
-  padding: 25px;
-  margin-bottom: 25px;
-  box-shadow: 0 5px 18px rgba(36, 59, 99, 0.06);
-}
-
-.dashboard-card h3 {
-  color: var(--navy);
-  margin-bottom: 20px;
-}
-    /* DASHBOARD FORM */
-.dashboard-card label {
-  display: block;
-  color: var(--navy);
-  font-weight: bold;
-  margin: 15px 0 7px;
-}
-
-.dashboard-card input,
-.dashboard-card textarea {
-  width: 100%;
-  padding: 12px;
-  border: 1px solid var(--border);
-  border-radius: 10px;
-  font: inherit;
-  color: var(--text);
-  box-sizing: border-box;
-}
-
-.dashboard-card textarea {
-  min-height: 100px;
-  resize: vertical;
-}
-
-.dashboard-card button {
-  margin-top: 20px;
-  padding: 12px 22px;
-  background: var(--navy);
-  color: white;
-  border: none;
-  border-radius: 10px;
-  font-weight: bold;
-  cursor: pointer;
-}
-
-.dashboard-card button:hover {
-  background: var(--blue-dark);
-}
-    /* DASHBOARD EVENT LIST */
-#adminEventList {
-  background: var(--background);
-  border-radius: 12px;
-  padding: 18px;
-  color: var(--muted);
-  min-height: 40px;
-}
-
-    /* ADMIN EVENT CARDS */
-.admin-event-item {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 15px;
-  background: white;
-  border: 1px solid var(--border);
-  border-radius: 14px;
-  padding: 16px;
-  margin-bottom: 12px;
-}
-
-.admin-event-item strong {
-  color: var(--navy);
-  font-size: 16px;
-}
-
-.admin-event-item button {
-  margin-top: 0;
-  background: #c94b55;
-  padding: 9px 14px;
-  flex-shrink: 0;
-}
-
-.admin-event-item button:hover {
-  background: #a93640;
-}
-#adminDashboard {
-  animation: dashboardFade 0.5s ease;
-}
-
-@keyframes dashboardFade {
-  from {
-    opacity: 0;
-    transform: translateY(12px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
   </style>
 </head>
 
 <body>
+  <div class="neon-frame" aria-hidden="true"></div>
 
-  <!-- NAVIGATION BAR -->
+  <!-- NAVIGATION -->
   <nav class="navbar">
-    <a class="brand" href="#home">
-      <span class="brand-icon">✦</span>
-      <span>SJD School Events</span>
-    </a>
+    <div class="brand">✝ SJD School Events</div>
 
     <div class="nav-links">
       <a href="#home">Home</a>
       <a href="#events">Events</a>
       <a href="#reminders">Reminders</a>
-      <a class="nav-button" href="#events">Explore events ↗</a>
-<button id="themeToggle" class="theme-toggle" type="button">
-  🌙 Dark Mode
-</button>
-      <button
-        type="button"
-        class="admin-login-button"
-        id="adminLoginButton">
-        ADMIN LOGIN ✦
+    </div>
+
+    <div class="nav-actions">
+      <button class="theme-toggle" id="themeToggle"
+        type="button" aria-pressed="false">
+        🌙 Dark Mode
+      </button>
+
+      <button class="admin-login-button" id="openLogin"
+        type="button">
+        🔐 Admin Login
       </button>
     </div>
   </nav>
 
-  <!-- HERO SECTION -->
-  <header class="hero" id="home">
-    <div class="hero-box">
-      <div>
-        <span class="eyebrow">YOUR SCHOOL, ALL IN ONE PLACE</span>
-
-        <h1>Stay in the<br>loop. ✨</h1>
-
+  <main>
+    <!-- HERO -->
+    <section class="hero container" id="home">
+      <div class="hero-box">
+        <h1>Stay in the loop. ✨</h1>
         <p>
-          Your place for school events, important dates,
-          and reminders. Everything you need to stay up to date.
+          Keep up with what's happening at San Juan Diego.
+          Find school events, important dates, and reminders
+          all in one place.
         </p>
-
-        <a class="primary-button" href="#events">
-          Explore upcoming events →
+        <a class="explore-button" href="#events">
+          Explore events ↗
         </a>
       </div>
 
-      <div class="hero-art" aria-hidden="true">📅</div>
-    </div>
-  </header>
-
-  <!-- MAIN CONTENT -->
-  <main>
-    <section class="announcement" aria-label="Important announcement">
-      <div class="announcement-icon">📣</div>
-
-      <div>
-        <h3>A little heads-up!</h3>
-
+      <div class="announcement">
+        <h2>📢 A little heads-up!</h2>
         <p>
-          Check official school announcements to confirm event dates,
-          deadlines, and any changes.
+          Check this page regularly so you don't miss upcoming
+          school activities and important announcements.
         </p>
       </div>
     </section>
 
     <!-- EVENTS -->
-    <section id="events">
+    <section class="container" id="events">
       <div class="section-heading">
-        <div>
-          <h2>What's happening? 👀</h2>
-          <p>Keep an eye on what's coming up around school.</p>
-        </div>
-
-        <span class="text-link">Upcoming events</span>
+        <h2>Upcoming Events 📅</h2>
+        <p>See what's coming up at SJD.</p>
       </div>
 
-     <div class="events-grid" id="publicEvents">
-  <p>Loading events...</p>
-</div>
-
+      <div class="events-grid" id="publicEvents">
+        <p class="empty-message">Loading events...</p>
+      </div>
     </section>
 
-    <!-- REMINDER -->
-    <section class="reminder-box" id="reminders">
-      <div class="reminder-emoji">💡</div>
-
-      <div>
-        <h2>Don't miss the little things!</h2>
-
+    <!-- REMINDERS -->
+    <section class="container" id="reminders">
+      <div class="reminder-box">
+        <h2>💡 Don't forget!</h2>
         <p>
-          Before an event, double-check the time, location,
-          registration requirements, and anything you need to bring.
+          Make checking school announcements part of your routine.
+          Staying informed helps you prepare for what's ahead.
         </p>
+        <p>
+          <strong>Tip:</strong> Check dates and details before
+          each event in case anything changes.
+        </p>
+      </div>
+    </section>
+
+    <!-- ADMIN DASHBOARD -->
+    <section class="container admin-panel" id="adminDashboard">
+      <h2>⚙️ Admin Dashboard</h2>
+      <p>Welcome! You can manage the events shown on the homepage.</p>
+
+      <button class="logout-button" id="logoutButton" type="button">
+        Log out
+      </button>
+
+      <hr style="border:0;border-top:1px solid var(--border);margin:25px 0;">
+
+      <h3>➕ Add a New Event</h3>
+
+      <form id="eventForm">
+        <label for="eventName">Event Name</label>
+        <input id="eventName" type="text"
+          placeholder="Example: School Mass" required maxlength="100">
+
+        <label for="eventDate">Date</label>
+        <input id="eventDate" type="date" required>
+
+        <label for="eventTime">Time</label>
+        <input id="eventTime" type="text"
+          placeholder="Example: 10:00 AM" required maxlength="60">
+
+        <label for="eventLocation">Location</label>
+        <input id="eventLocation" type="text"
+          placeholder="Example: School Chapel" required maxlength="100">
+
+        <label for="eventDescription">Description</label>
+        <textarea id="eventDescription"
+          placeholder="Add a short description..."
+          maxlength="1000"></textarea>
+
+        <button class="primary-button" type="submit">
+          Save Event
+        </button>
+
+        <p class="status-message" id="formStatus" aria-live="polite"></p>
+      </form>
+
+      <hr style="border:0;border-top:1px solid var(--border);margin:25px 0;">
+
+      <h3>📋 Current Events</h3>
+      <div id="adminEventList">
+        <p>Loading events...</p>
       </div>
     </section>
   </main>
 
   <!-- FOOTER -->
   <footer>
-    <strong>SJD School Events</strong>
-
-    <p>Student Practice Website · Stay informed, stay connected.</p>
-
-    <p>Practice examples only. Confirm event details with the school.</p>
+    <p><strong>✝ SJD School Events</strong></p>
+    <p>Helping our school community stay connected.</p>
+    <p class="practice-note">
+      This is a student practice project and is not an official
+      San Juan Diego school website.
+    </p>
   </footer>
-<!-- ADMIN DASHBOARD -->
-<section id="adminDashboard" class="admin-dashboard" style="display: none;">
 
-  <h2>SJD Admin Dashboard ✨</h2>
-  <p>Welcome! You can manage school events here.</p>
+  <!-- LOGIN POPUP -->
+  <div class="modal" id="loginModal">
+    <div class="login-panel">
+      <button class="close-button" id="closeLogin"
+        type="button" aria-label="Close login">×</button>
 
-  <div class="dashboard-card">
-    <h3>Add a New Event</h3>
+      <h2>🔐 Admin Login</h2>
+      <p>Sign in to manage school events.</p>
 
-    <form id="eventForm">
+      <form id="loginForm">
+        <label for="loginEmail">Email</label>
+        <input id="loginEmail" type="email"
+          placeholder="Admin email" required>
 
-      <label>Event Name</label>
-      <input type="text" id="eventName" placeholder="Example: School Spirit Day" required>
+        <label for="loginPassword">Password</label>
+        <input id="loginPassword" type="password"
+          placeholder="Password" required>
 
-      <label>Event Date</label>
-      <input type="date" id="eventDate" required>
-
-      <label>Event Time</label>
-      <input type="time" id="eventTime">
-
-      <label>Event Location</label>
-      <input type="text" id="eventLocation" placeholder="Example: School Gym">
-
-      <label>Event Description</label>
-      <textarea id="eventDescription" placeholder="Write a short description..."></textarea>
-
-      <button type="submit">ADD EVENT ✦</button>
-
-    </form>
-  </div>
-
-  <div class="dashboard-card">
-    <h3>Current Events</h3>
-    <div id="adminEventList">
-      <p>Your events will appear here.</p>
-    </div>
-  </div>
-
-</section>
-<!-- END ADMIN DASHBOARD -->
-  <!-- ADMIN LOGIN POPUP -->
-  <div class="login-overlay" id="loginOverlay">
-    <div
-      class="login-panel"
-      role="dialog"
-      aria-modal="true"
-      aria-labelledby="loginTitle">
-
-      <button
-        type="button"
-        class="login-close"
-        id="closeLogin"
-        aria-label="Close login">
-        &times;
-      </button>
-
-      <div style="font-size: 38px;">✝</div>
-
-      <h2 id="loginTitle">Admin Login</h2>
-
-      <p class="login-description">
-        Sign in to manage school events.
-      </p>
-
-      <form class="login-form" id="loginForm">
-
-        <label for="adminEmail">
-          Email Address
-
-          <input
-            type="email"
-            id="adminEmail"
-            placeholder="Enter your admin email"
-            autocomplete="username"
-            required>
-        </label>
-
-        <label for="adminPassword">
-          Password
-
-          <input
-            type="password"
-            id="adminPassword"
-            placeholder="Enter your password"
-            autocomplete="current-password"
-            required>
-        </label>
-
-        <button type="submit" class="login-submit">
-          LOG IN ✦
+        <button class="primary-button" type="submit">
+          Sign In
         </button>
 
-        <p
-          class="login-message"
-          id="loginMessage"
-          aria-live="polite">
-        </p>
-
+        <p class="error-message" id="loginError"
+          aria-live="polite"></p>
       </form>
     </div>
   </div>
 
-  <!-- JAVASCRIPT FOR OPENING AND CLOSING LOGIN -->
- <script type="module">
-  // Import Firebase
-  import { initializeApp } from "https://www.gstatic.com/firebasejs/11.10.0/firebase-app.js";
+  <!-- FIREBASE + WEBSITE FUNCTIONALITY -->
+  <script type="module">
+    import { initializeApp } from
+      "https://www.gstatic.com/firebasejs/11.10.0/firebase-app.js";
 
-  import {
-    getAuth,
-    signInWithEmailAndPassword
-  } from "https://www.gstatic.com/firebasejs/11.10.0/firebase-auth.js";
-import {
-  getFirestore,
-  collection,
-  addDoc,
-  getDocs,
-  deleteDoc,
-  doc
-} from "https://www.gstatic.com/firebasejs/11.10.0/firebase-firestore.js";
-  // Your Firebase project settings
-  const firebaseConfig = {
-    apiKey: "AIzaSyDqoyy1vweZRsA8iPzvy2lwRMzcdAPT5Es",
-    authDomain: "website-sample-20f96.firebaseapp.com",
-    projectId: "website-sample-20f96",
-    storageBucket: "website-sample-20f96.firebasestorage.app",
-    messagingSenderId: "449979424960",
-    appId: "1:449979424960:web:63728022ad5df470d30d25",
-    measurementId: "G-H0YPSP25VJ"
-  };
+    import {
+      getAuth,
+      signInWithEmailAndPassword,
+      signOut,
+      onAuthStateChanged
+    } from
+      "https://www.gstatic.com/firebasejs/11.10.0/firebase-auth.js";
 
-  // Start Firebase
-  const app = initializeApp(firebaseConfig);
-  const auth = getAuth(app);
-const db = getFirestore(app);
-  // Get the login elements
-  const loginOverlay = document.getElementById("loginOverlay");
-  const adminLoginButton = document.getElementById("adminLoginButton");
-  const closeLoginButton = document.getElementById("closeLogin");
-  const loginForm = document.getElementById("loginForm");
-  const loginMessage = document.getElementById("loginMessage");
+    import {
+      getFirestore,
+      collection,
+      addDoc,
+      getDocs,
+      deleteDoc,
+      doc,
+      serverTimestamp
+    } from
+      "https://www.gstatic.com/firebasejs/11.10.0/firebase-firestore.js";
 
-  const emailInput = document.getElementById("adminEmail");
-  const passwordInput = document.getElementById("adminPassword");
+    /* YOUR EXISTING FIREBASE PROJECT */
+    const firebaseConfig = {
+      apiKey: "AIzaSyDqoyy1vweZRsA8iPzvy2lwRMzcdAPT5Es",
+      authDomain: "website-sample-20f96.firebaseapp.com",
+      projectId: "website-sample-20f96",
+      storageBucket: "website-sample-20f96.firebasestorage.app",
+      messagingSenderId: "449979424960",
+      appId: "1:449979424960:web:63728022ad5df470d30d25",
+      measurementId: "G-H0YPSP25VJ"
+    };
 
-  // Open the login popup
-  adminLoginButton.addEventListener("click", () => {
-    loginOverlay.classList.add("show");
-    loginMessage.textContent = "";
-  });
+    const ADMIN_UID = "NGnYOsekcTZntHQXLZjsHLkyYf53";
 
-  // Close the popup using the X button
-  closeLoginButton.addEventListener("click", () => {
-    loginOverlay.classList.remove("show");
-  });
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+    const db = getFirestore(app);
 
-  // Close by clicking outside the panel
-  loginOverlay.addEventListener("click", (event) => {
-    if (event.target === loginOverlay) {
-      loginOverlay.classList.remove("show");
-    }
-  });
+    /* ELEMENTS */
+    const loginModal = document.getElementById("loginModal");
+    const loginForm = document.getElementById("loginForm");
+    const loginError = document.getElementById("loginError");
+    const adminDashboard = document.getElementById("adminDashboard");
+    const eventForm = document.getElementById("eventForm");
+    const formStatus = document.getElementById("formStatus");
+    const publicEvents = document.getElementById("publicEvents");
+    const adminEventList = document.getElementById("adminEventList");
 
-  // Connect the login form to Firebase
-  loginForm.addEventListener("submit", async (event) => {
-    event.preventDefault();
+    let currentUserIsAdmin = false;
 
-    const email = emailInput.value.trim();
-    const password = passwordInput.value;
+    /* DARK MODE */
+    const themeToggle = document.getElementById("themeToggle");
 
-    loginMessage.textContent = "Logging in...";
+    function setTheme(isDark) {
+      document.body.classList.toggle("dark-mode", isDark);
+      themeToggle.textContent = isDark ? "☀️ Light Mode" : "🌙 Dark Mode";
+      themeToggle.setAttribute("aria-pressed", String(isDark));
 
-    try {
-      await signInWithEmailAndPassword(auth, email, password);
-
-      loginMessage.textContent = "Login successful! 🎉";
-
-     loginOverlay.classList.remove("show");
-
-document.getElementById("adminDashboard").style.display = "block";
-      
-loadAdminEvents();
-      
-document.getElementById("adminDashboard").scrollIntoView({
-  behavior: "smooth"
-});
-    } catch (error) {
-      if (
-        error.code === "auth/invalid-credential" ||
-        error.code === "auth/wrong-password" ||
-        error.code === "auth/user-not-found"
-      ) {
-        loginMessage.textContent = "Incorrect email or password.";
-      } else {
-        loginMessage.textContent =
-          "Login failed. Please try again.";
+      try {
+        localStorage.setItem("sjd-theme", isDark ? "dark" : "light");
+      } catch (error) {
+        console.warn("Theme preference could not be saved.");
       }
     }
-  });
-   // SAVE NEW EVENTS TO FIRESTORE
-const eventForm = document.getElementById("eventForm");
 
-eventForm.addEventListener("submit", async (event) => {
-  event.preventDefault();
-
-  const eventData = {
-    name: document.getElementById("eventName").value.trim(),
-    date: document.getElementById("eventDate").value,
-    time: document.getElementById("eventTime").value,
-    location: document.getElementById("eventLocation").value.trim(),
-    description: document.getElementById("eventDescription").value.trim()
-  };
-
-  try {
-    await addDoc(collection(db, "events"), eventData);
-
-    alert("Event saved successfully! 🎉");
-    eventForm.reset();
-
-  } catch (error) {
-    console.error("Error saving event:", error);
-    alert("Could not save the event. Please try again.");
-  }
-});
-   // LOAD EVENTS ON THE HOMEPAGE
-async function loadPublicEvents() {
-  const publicEvents = document.getElementById("publicEvents");
-
-  try {
-    const snapshot = await getDocs(collection(db, "events"));
-
-    publicEvents.replaceChildren();
-
-    if (snapshot.empty) {
-      publicEvents.textContent = "No events have been posted yet.";
-      return;
+    try {
+      setTheme(localStorage.getItem("sjd-theme") === "dark");
+    } catch (error) {
+      setTheme(false);
     }
 
-    snapshot.forEach((doc) => {
-      const eventData = doc.data();
-
-      const card = document.createElement("article");
-      card.className = "event-card";
-
-      const title = document.createElement("h3");
-      title.textContent = eventData.name || "Untitled Event";
-      card.appendChild(title);
-
-      const description = document.createElement("p");
-      description.textContent = eventData.description || "";
-      card.appendChild(description);
-
-      const details = document.createElement("div");
-      details.className = "event-details";
-
-      const date = document.createElement("p");
-      date.textContent = "📅 Date: " + (eventData.date || "To be announced");
-      details.appendChild(date);
-
-      const time = document.createElement("p");
-      time.textContent = "🕒 Time: " + (eventData.time || "To be announced");
-      details.appendChild(time);
-
-      const location = document.createElement("p");
-      location.textContent = "📍 Location: " + (eventData.location || "To be announced");
-      details.appendChild(location);
-
-      card.appendChild(details);
-      publicEvents.appendChild(card);
+    themeToggle.addEventListener("click", () => {
+      setTheme(!document.body.classList.contains("dark-mode"));
     });
 
-  } catch (error) {
-    console.error("Error loading events:", error);
-    publicEvents.textContent = "Could not load events. Please try again later.";
-  }
-}
+    /* LOGIN POPUP */
+    document.getElementById("openLogin").addEventListener("click", () => {
+      loginModal.classList.add("show");
+      loginError.textContent = "";
+    });
 
-loadPublicEvents();
-   // LOAD EVENTS IN THE ADMIN DASHBOARD
-async function loadAdminEvents() {
-  const adminEventList = document.getElementById("adminEventList");
+    document.getElementById("closeLogin").addEventListener("click", () => {
+      loginModal.classList.remove("show");
+    });
 
-  try {
-    const snapshot = await getDocs(collection(db, "events"));
+    loginModal.addEventListener("click", (event) => {
+      if (event.target === loginModal) {
+        loginModal.classList.remove("show");
+      }
+    });
 
-    adminEventList.replaceChildren();
+    /* SIGN IN */
+    loginForm.addEventListener("submit", async (event) => {
+      event.preventDefault();
+      loginError.textContent = "Signing in...";
 
-    if (snapshot.empty) {
-      adminEventList.textContent = "No events have been posted yet.";
-      return;
-    }
+      const email = document.getElementById("loginEmail").value.trim();
+      const password = document.getElementById("loginPassword").value;
 
-    snapshot.forEach((eventDoc) => {
-      const eventData = eventDoc.data();
-
-      const eventItem = document.createElement("div");
-      eventItem.style.marginBottom = "15px";
-
-      const title = document.createElement("strong");
-      title.textContent = eventData.name || "Untitled Event";
-
-      const deleteButton = document.createElement("button");
-      deleteButton.textContent = "DELETE";
-     eventItem.className = "admin-event-item";
-
-      deleteButton.addEventListener("click", async () => {
-        const confirmed = confirm(
-          "Are you sure you want to delete this event?"
+      try {
+        const result = await signInWithEmailAndPassword(
+          auth, email, password
         );
 
-        if (!confirmed) return;
-
-        try {
-          await deleteDoc(doc(db, "events", eventDoc.id));
-          await loadAdminEvents();
-          await loadPublicEvents();
-          alert("Event deleted successfully!");
-        } catch (error) {
-          console.error("Error deleting event:", error);
-          alert("Could not delete the event.");
+        if (result.user.uid !== ADMIN_UID) {
+          await signOut(auth);
+          loginError.textContent = "This account does not have admin access.";
+          return;
         }
-      });
 
-      eventItem.appendChild(title);
-      eventItem.appendChild(deleteButton);
-      adminEventList.appendChild(eventItem);
+        loginError.textContent = "";
+        loginModal.classList.remove("show");
+        loginForm.reset();
+      } catch (error) {
+        console.error("Login error:", error);
+        loginError.textContent =
+          "Login failed. Check your email and password.";
+      }
     });
 
-  } catch (error) {
-    console.error("Error loading admin events:", error);
-    adminEventList.textContent = "Could not load admin events.";
-  }
-}
-   // LIGHT AND DARK MODE SWITCH
-const themeToggle = document.getElementById("themeToggle");
+    /* AUTHENTICATION STATE */
+    onAuthStateChanged(auth, async (user) => {
+      currentUserIsAdmin = Boolean(user && user.uid === ADMIN_UID);
 
-themeToggle.addEventListener("click", () => {
-  document.body.classList.toggle("dark-mode");
+      if (user && !currentUserIsAdmin) {
+        await signOut(auth);
+      }
 
-  if (document.body.classList.contains("dark-mode")) {
-    themeToggle.textContent = "☀️ Light Mode";
-  } else {
-    themeToggle.textContent = "🌙 Dark Mode";
-  }
-});
-</script>
+      adminDashboard.classList.toggle("visible", currentUserIsAdmin);
+
+      if (currentUserIsAdmin) {
+        await loadAdminEvents();
+      } else {
+        adminEventList.replaceChildren();
+      }
+    });
+
+    /* LOG OUT */
+    document.getElementById("logoutButton").addEventListener(
+      "click", async () => {
+        try {
+          await signOut(auth);
+        } catch (error) {
+          console.error("Logout error:", error);
+          alert("Could not log out. Please try again.");
+        }
+      }
+    );
+
+    /* SAFE TEXT HELPER */
+    function addTextElement(parent, tag, text, className) {
+      const element = document.createElement(tag);
+      element.textContent = text || "";
+
+      if (className) {
+        element.className = className;
+      }
+
+      parent.appendChild(element);
+      return element;
+    }
+
+    /* LOAD PUBLIC EVENTS */
+    async function loadPublicEvents() {
+      publicEvents.replaceChildren();
+      addTextElement(publicEvents, "p", "Loading events...", "empty-message");
+
+      try {
+        const snapshot = await getDocs(collection(db, "events"));
+        publicEvents.replaceChildren();
+
+        if (snapshot.empty) {
+          addTextElement(
+            publicEvents,
+            "p",
+            "No events have been posted yet. Check back soon!",
+            "empty-message"
+          );
+          return;
+        }
+
+        const events = snapshot.docs.map(eventDoc => ({
+          id: eventDoc.id,
+          ...eventDoc.data()
+        }));
+
+        events.sort((a, b) =>
+          String(a.date || "").localeCompare(String(b.date || ""))
+        );
+
+        events.forEach(event => {
+          const card = document.createElement("article");
+          card.className = "event-card";
+
+          addTextElement(card, "h3", event.name || "Untitled Event");
+          addTextElement(card, "p", "📅 " + (event.date || "Date not set"), "event-detail");
+          addTextElement(card, "p", "🕒 " + (event.time || "Time not set"), "event-detail");
+          addTextElement(card, "p", "📍 " + (event.location || "Location not set"), "event-detail");
+
+          if (event.description) {
+            addTextElement(
+              card, "p", event.description, "event-description"
+            );
+          }
+
+          publicEvents.appendChild(card);
+        });
+
+      } catch (error) {
+        console.error("Could not load public events:", error);
+        publicEvents.replaceChildren();
+        addTextElement(
+          publicEvents,
+          "p",
+          "Events could not be loaded. Please try again later.",
+          "empty-message"
+        );
+      }
+    }
+
+    /* LOAD ADMIN EVENTS */
+    async function loadAdminEvents() {
+      if (!currentUserIsAdmin) return;
+
+      adminEventList.replaceChildren();
+      addTextElement(adminEventList, "p", "Loading events...");
+
+      try {
+        const snapshot = await getDocs(collection(db, "events"));
+        adminEventList.replaceChildren();
+
+        if (snapshot.empty) {
+          addTextElement(adminEventList, "p", "There are no events yet.");
+          return;
+        }
+
+        const events = snapshot.docs.map(eventDoc => ({
+          id: eventDoc.id,
+          ...eventDoc.data()
+        }));
+
+        events.sort((a, b) =>
+          String(a.date || "").localeCompare(String(b.date || ""))
+        );
+
+        events.forEach(event => {
+          const row = document.createElement("div");
+          row.className = "admin-event";
+
+          const details = document.createElement("div");
+          addTextElement(details, "strong", event.name || "Untitled Event");
+          addTextElement(
+            details,
+            "p",
+            `${event.date || "No date"} • ${event.time || "No time"}`,
+            "event-detail"
+          );
+
+          const deleteButton = document.createElement("button");
+          deleteButton.className = "delete-button";
+          deleteButton.type = "button";
+          deleteButton.textContent = "Delete";
+
+          deleteButton.addEventListener("click", async () => {
+            if (!currentUserIsAdmin) return;
+
+            const confirmed = confirm(
+              `Are you sure you want to delete "${event.name || "this event"}"?`
+            );
+
+            if (!confirmed) return;
+
+            deleteButton.disabled = true;
+            deleteButton.textContent = "Deleting...";
+
+            try {
+              await deleteDoc(doc(db, "events", event.id));
+              await loadAdminEvents();
+              await loadPublicEvents();
+            } catch (error) {
+              console.error("Delete error:", error);
+              alert("Could not delete this event. Please try again.");
+              deleteButton.disabled = false;
+              deleteButton.textContent = "Delete";
+            }
+          });
+
+          row.append(details, deleteButton);
+          adminEventList.appendChild(row);
+        });
+
+      } catch (error) {
+        console.error("Could not load admin events:", error);
+        adminEventList.replaceChildren();
+        addTextElement(adminEventList, "p", "Could not load events.");
+      }
+    }
+
+    /* ADD NEW EVENT */
+    eventForm.addEventListener("submit", async (event) => {
+      event.preventDefault();
+
+      if (!currentUserIsAdmin || !auth.currentUser ||
+          auth.currentUser.uid !== ADMIN_UID) {
+        formStatus.textContent = "You must be logged in as an administrator.";
+        return;
+      }
+
+      const name = document.getElementById("eventName").value.trim();
+      const date = document.getElementById("eventDate").value;
+      const time = document.getElementById("eventTime").value.trim();
+      const location = document.getElementById("eventLocation").value.trim();
+      const description = document.getElementById("eventDescription").value.trim();
+
+      if (!name || !date || !time || !location) {
+        formStatus.textContent = "Please fill in all required fields.";
+        return;
+      }
+
+      const saveButton = eventForm.querySelector('button[type="submit"]');
+      saveButton.disabled = true;
+      saveButton.textContent = "Saving...";
+      formStatus.textContent = "";
+
+      try {
+        await addDoc(collection(db, "events"), {
+          name,
+          date,
+          time,
+          location,
+          description,
+          createdAt: serverTimestamp()
+        });
+
+        eventForm.reset();
+        formStatus.textContent = "Event saved successfully!";
+
+        await loadPublicEvents();
+        await loadAdminEvents();
+
+      } catch (error) {
+        console.error("Could not save event:", error);
+        formStatus.textContent =
+          "Could not save the event. Check your connection and permissions.";
+      } finally {
+        saveButton.disabled = false;
+        saveButton.textContent = "Save Event";
+      }
+    });
+
+    /* LOAD PUBLIC EVENTS WHEN PAGE OPENS */
+    loadPublicEvents();
+  </script>
+</body>
+</html>
