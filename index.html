@@ -1048,7 +1048,12 @@
     getAuth,
     signInWithEmailAndPassword
   } from "https://www.gstatic.com/firebasejs/11.10.0/firebase-auth.js";
-
+import {
+  getFirestore,
+  collection,
+  addDoc,
+  getDocs
+} from "https://www.gstatic.com/firebasejs/11.10.0/firebase-firestore.js";
   // Your Firebase project settings
   const firebaseConfig = {
     apiKey: "AIzaSyDqoyy1vweZRsA8iPzvy2lwRMzcdAPT5Es",
@@ -1063,7 +1068,7 @@
   // Start Firebase
   const app = initializeApp(firebaseConfig);
   const auth = getAuth(app);
-
+const db = getFirestore(app);
   // Get the login elements
   const loginOverlay = document.getElementById("loginOverlay");
   const adminLoginButton = document.getElementById("adminLoginButton");
@@ -1126,4 +1131,29 @@ document.getElementById("adminDashboard").scrollIntoView({
       }
     }
   });
+   // SAVE NEW EVENTS TO FIRESTORE
+const eventForm = document.getElementById("eventForm");
+
+eventForm.addEventListener("submit", async (event) => {
+  event.preventDefault();
+
+  const eventData = {
+    name: document.getElementById("eventName").value.trim(),
+    date: document.getElementById("eventDate").value,
+    time: document.getElementById("eventTime").value,
+    location: document.getElementById("eventLocation").value.trim(),
+    description: document.getElementById("eventDescription").value.trim()
+  };
+
+  try {
+    await addDoc(collection(db, "events"), eventData);
+
+    alert("Event saved successfully! 🎉");
+    eventForm.reset();
+
+  } catch (error) {
+    console.error("Error saving event:", error);
+    alert("Could not save the event. Please try again.");
+  }
+});
 </script>
