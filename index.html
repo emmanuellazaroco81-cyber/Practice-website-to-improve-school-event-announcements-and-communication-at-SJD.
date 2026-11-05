@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -12,7 +11,7 @@
       --blue: #dcecff;
       --blue-dark: #4779bd;
       --yellow: #ffe6a3;
-      --background: #ffffff;
+      --background: #f6f9fe;
       --surface: #ffffff;
       --text: #243b63;
       --muted: #66758c;
@@ -47,7 +46,8 @@
       cursor: pointer;
     }
 
-    /* Subtle Catholic-school decorations */
+    /* Decorative Catholic-school details */
+
     body::before,
     body::after {
       position: fixed;
@@ -69,6 +69,8 @@
       content: "❦  ✝\A ❧  ❦\A ✝  ❧";
       right: 10px;
     }
+
+    /* NAVIGATION */
 
     .navbar {
       position: sticky;
@@ -141,6 +143,8 @@
       box-shadow: 0 0 16px rgba(255, 50, 90, 0.85);
     }
 
+    /* GENERAL LAYOUT */
+
     .container {
       width: min(1100px, 88%);
       margin: auto;
@@ -210,6 +214,8 @@
       font-size: 1.15rem;
     }
 
+    /* EVENTS */
+
     .section-heading {
       margin: 55px 0 22px;
     }
@@ -274,6 +280,8 @@
       background: var(--surface);
     }
 
+    /* REMINDERS */
+
     .reminder-box {
       margin: 40px 0 65px;
       padding: 28px;
@@ -292,6 +300,8 @@
       color: var(--muted);
     }
 
+    /* FOOTER */
+
     footer {
       padding: 28px 15px;
       background: var(--navy);
@@ -308,7 +318,8 @@
       opacity: 0.8;
     }
 
-    /* Login popup */
+    /* LOGIN POPUP */
+
     .modal {
       display: none;
       position: fixed;
@@ -364,7 +375,8 @@
       font-size: 0.9rem;
     }
 
-    /* Admin dashboard */
+    /* ADMIN DASHBOARD */
+
     .admin-panel {
       display: none;
       margin: 50px auto;
@@ -408,17 +420,32 @@
       background: var(--background);
     }
 
-    .delete-button {
+    .admin-event-actions {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .delete-button,
+    .edit-button {
       border: none;
       border-radius: 18px;
       padding: 8px 13px;
       color: white;
-      background: #c62828;
       font-weight: 700;
       flex-shrink: 0;
     }
 
-    .logout-button {
+    .delete-button {
+      background: #c62828;
+    }
+
+    .edit-button {
+      background: #4779bd;
+    }
+
+    .logout-button,
+    .cancel-button {
       border: 1px solid var(--border);
       border-radius: 20px;
       padding: 9px 15px;
@@ -433,90 +460,69 @@
       font-size: 0.9rem;
     }
 
-    /* ===================================
-       DARK MODE
-       =================================== */
+    /* DARK MODE */
 
-  
-body.dark-mode {
-  --navy: #e2eaff;
-  --blue: #080d19;
-  --blue-dark: #4779bd;
-  --yellow: #111a2c;
-  --background: #05070d;
-  --surface: #0b101c;
-  --text: #e3ebff;
-  --muted: #a5b3cb;
-  --border: #293953;
-  --shadow: 0 0 18px rgba(0, 225, 255, 0.12);
+    body.dark-mode {
+      --navy: #e2eaff;
+      --blue: #080d19;
+      --blue-dark: #4779bd;
+      --yellow: #111a2c;
+      --background: #05070d;
+      --surface: #0b101c;
+      --text: #e3ebff;
+      --muted: #a5b3cb;
+      --border: #293953;
+      --shadow: 0 0 18px rgba(0, 225, 255, 0.12);
 
-  background: var(--background);
-  color: var(--text);
-}
+      background: var(--background);
+      color: var(--text);
+    }
 
-/* Slowly changing rainbow neon glow */
-body.dark-mode::before {
-  content: "";
-  position: fixed;
-  inset: 0;
-  pointer-events: none;
-  z-index: 0;
+    /* Animated rainbow edge glow */
 
-  background: linear-gradient(
-    120deg,
-    #ff004c,
-    #ff8c00,
-    #ffee00,
-    #00ff88,
-    #00c8ff,
-    #8a2bff,
-    #ff00c8,
-    #ff004c
-  );
+    body.dark-mode::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+      background: linear-gradient(
+        90deg,
+        #ff004c,
+        #ff8c00,
+        #ffee00,
+        #00ff88,
+        #00c8ff,
+        #8a2bff,
+        #ff00c8,
+        #ff004c
+      );
+      background-size: 300% 300%;
+      animation: rainbowFlow 18s linear infinite;
+      opacity: 0.7;
+      filter: blur(12px);
+      mask-image: linear-gradient(
+        to right,
+        black 0%,
+        transparent 5%,
+        transparent 95%,
+        black 100%
+      );
+    }
 
-  background-size: 300% 300%;
-  animation: rainbowFlow 18s ease infinite;
-
-  opacity: 0.55;
-  filter: blur(35px);
-
-  /* Only show the glow near the edges */
-  mask-image: linear-gradient(
-    to bottom,
-    black 0%,
-    transparent 35%,
-    transparent 65%,
-    black 100%
-  );
-}
-
-@keyframes rainbowFlow {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
-}
-
-body.dark-mode > * {
-  position: relative;
-  z-index: 1;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  body.dark-mode::before {
-    animation: none;
-  }
-}
-
+    @keyframes rainbowFlow {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
 
     body.dark-mode .navbar {
       background: rgba(12, 20, 36, 0.96);
       border-color: #263750;
-      box-shadow: 0 3px 18px rgba(0, 0, 0, 0.35);
     }
 
     body.dark-mode .hero-box {
       background: linear-gradient(135deg, #13243e, #171c38);
-      box-shadow: 0 0 20px rgba(0, 225, 255, 0.09);
     }
 
     body.dark-mode .hero-box h1,
@@ -533,7 +539,6 @@ body.dark-mode > * {
       background: #292638;
       color: #f3dfb0;
       border-left-color: #f1c76a;
-      box-shadow: 0 0 13px rgba(255, 210, 100, 0.12);
     }
 
     body.dark-mode .theme-toggle {
@@ -541,12 +546,6 @@ body.dark-mode > * {
       background: #17243a;
       color: #b9f7ff;
       box-shadow: 0 0 8px rgba(0, 220, 255, 0.2);
-    }
-
-    body.dark-mode .event-card,
-    body.dark-mode .reminder-box,
-    body.dark-mode .admin-panel {
-      box-shadow: 0 0 12px rgba(0, 220, 255, 0.07);
     }
 
     body.dark-mode .admin-event {
@@ -566,67 +565,15 @@ body.dark-mode > * {
 
     body.dark-mode .nav-links a:hover {
       color: #7defff;
-      text-shadow: 0 0 8px rgba(0, 225, 255, 0.6);
     }
 
-    /* Neon glow frame: top and sides */
-    .neon-frame {
-      display: none;
-      position: fixed;
-      inset: 0;
-      z-index: 0;
-      pointer-events: none;
-      overflow: hidden;
+    @media (prefers-reduced-motion: reduce) {
+      body.dark-mode::before {
+        animation: none;
+      }
     }
 
-    body.dark-mode .neon-frame {
-      display: block;
-    }
-
-    .neon-frame::before {
-      content: "";
-      position: absolute;
-      top: -130px;
-      left: 8%;
-      right: 8%;
-      height: 250px;
-      background: radial-gradient(
-        ellipse,
-        rgba(0, 225, 255, 0.19) 0%,
-        rgba(90, 70, 255, 0.11) 35%,
-        transparent 72%
-      );
-      filter: blur(28px);
-    }
-
-    .neon-frame::after {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background:
-        radial-gradient(ellipse at left center,
-          rgba(0, 225, 255, 0.12), transparent 33%),
-        radial-gradient(ellipse at right center,
-          rgba(130, 80, 255, 0.12), transparent 33%);
-    }
-
-    body.dark-mode .neon-frame {
-      animation: neonPulse 5s ease-in-out infinite alternate;
-    }
-
-    @keyframes neonPulse {
-      from { opacity: 0.75; }
-      to { opacity: 1; }
-    }
-
-    /* Keep website content above the glow layer */
-    .navbar,
-    main,
-    footer,
-    .admin-panel {
-      position: relative;
-      z-index: 1;
-    }
+    /* MOBILE */
 
     @media (max-width: 720px) {
       .navbar {
@@ -662,11 +609,10 @@ body.dark-mode > * {
     }
   </style>
 </head>
-
 <body>
-  <div class="neon-frame" aria-hidden="true"></div>
 
   <!-- NAVIGATION -->
+
   <nav class="navbar">
     <div class="brand">✝ SJD School Events</div>
 
@@ -690,15 +636,19 @@ body.dark-mode > * {
   </nav>
 
   <main>
+
     <!-- HERO -->
+
     <section class="hero container" id="home">
       <div class="hero-box">
         <h1>Stay in the loop. ✨</h1>
+
         <p>
           Keep up with what's happening at San Juan Diego.
           Find school events, important dates, and reminders
           all in one place.
         </p>
+
         <a class="explore-button" href="#events">
           Explore events ↗
         </a>
@@ -706,6 +656,7 @@ body.dark-mode > * {
 
       <div class="announcement">
         <h2>📢 A little heads-up!</h2>
+
         <p>
           Check this page regularly so you don't miss upcoming
           school activities and important announcements.
@@ -714,6 +665,7 @@ body.dark-mode > * {
     </section>
 
     <!-- EVENTS -->
+
     <section class="container" id="events">
       <div class="section-heading">
         <h2>Upcoming Events 📅</h2>
@@ -726,13 +678,16 @@ body.dark-mode > * {
     </section>
 
     <!-- REMINDERS -->
+
     <section class="container" id="reminders">
       <div class="reminder-box">
         <h2>💡 Don't forget!</h2>
+
         <p>
           Make checking school announcements part of your routine.
           Staying informed helps you prepare for what's ahead.
         </p>
+
         <p>
           <strong>Tip:</strong> Check dates and details before
           each event in case anything changes.
@@ -741,9 +696,14 @@ body.dark-mode > * {
     </section>
 
     <!-- ADMIN DASHBOARD -->
+
     <section class="container admin-panel" id="adminDashboard">
+
       <h2>⚙️ Admin Dashboard</h2>
-      <p>Welcome! You can manage the events shown on the homepage.</p>
+
+      <p>
+        Welcome! You can manage the events shown on the homepage.
+      </p>
 
       <button class="logout-button" id="logoutButton" type="button">
         Log out
@@ -751,49 +711,67 @@ body.dark-mode > * {
 
       <hr style="border:0;border-top:1px solid var(--border);margin:25px 0;">
 
-      <h3>➕ Add a New Event</h3>
+      <h3 id="eventFormHeading">➕ Add a New Event</h3>
 
       <form id="eventForm">
+
         <label for="eventName">Event Name</label>
         <input id="eventName" type="text"
-          placeholder="Example: School Mass" required maxlength="100">
+          placeholder="Example: School Mass"
+          required maxlength="100">
 
         <label for="eventDate">Date</label>
         <input id="eventDate" type="date" required>
 
         <label for="eventTime">Time</label>
         <input id="eventTime" type="text"
-          placeholder="Example: 10:00 AM" required maxlength="60">
+          placeholder="Example: 10:00 AM"
+          required maxlength="60">
 
         <label for="eventLocation">Location</label>
         <input id="eventLocation" type="text"
-          placeholder="Example: School Chapel" required maxlength="100">
+          placeholder="Example: School Chapel"
+          required maxlength="100">
 
         <label for="eventDescription">Description</label>
         <textarea id="eventDescription"
           placeholder="Add a short description..."
           maxlength="1000"></textarea>
 
-        <button class="primary-button" type="submit">
+        <button class="primary-button" id="saveEventButton"
+          type="submit">
           Save Event
         </button>
 
-        <p class="status-message" id="formStatus" aria-live="polite"></p>
+        <button class="cancel-button" id="cancelEditButton"
+          type="button" hidden>
+          Cancel Edit
+        </button>
+
+        <p class="status-message" id="formStatus"
+          aria-live="polite"></p>
+
       </form>
 
       <hr style="border:0;border-top:1px solid var(--border);margin:25px 0;">
 
       <h3>📋 Current Events</h3>
+
       <div id="adminEventList">
         <p>Loading events...</p>
       </div>
+
     </section>
+
   </main>
 
   <!-- FOOTER -->
+
   <footer>
     <p><strong>✝ SJD School Events</strong></p>
+
     <p>Helping our school community stay connected.</p>
+
     <p class="practice-note">
       This is a student practice project and is not an official
       San Juan Diego school website.
@@ -801,15 +779,22 @@ body.dark-mode > * {
   </footer>
 
   <!-- LOGIN POPUP -->
+
   <div class="modal" id="loginModal">
+
     <div class="login-panel">
+
       <button class="close-button" id="closeLogin"
-        type="button" aria-label="Close login">×</button>
+        type="button" aria-label="Close login">
+        ×
+      </button>
 
       <h2>🔐 Admin Login</h2>
+
       <p>Sign in to manage school events.</p>
 
       <form id="loginForm">
+
         <label for="loginEmail">Email</label>
         <input id="loginEmail" type="email"
           placeholder="Admin email" required>
@@ -824,12 +809,13 @@ body.dark-mode > * {
 
         <p class="error-message" id="loginError"
           aria-live="polite"></p>
+
       </form>
+
     </div>
   </div>
+    <script type="module">
 
-  <!-- FIREBASE + WEBSITE FUNCTIONALITY -->
-  <script type="module">
     import { initializeApp } from
       "https://www.gstatic.com/firebasejs/11.10.0/firebase-app.js";
 
@@ -846,13 +832,16 @@ body.dark-mode > * {
       collection,
       addDoc,
       getDocs,
+      updateDoc,
       deleteDoc,
       doc,
       serverTimestamp
     } from
       "https://www.gstatic.com/firebasejs/11.10.0/firebase-firestore.js";
 
-    /* YOUR EXISTING FIREBASE PROJECT */
+
+    /* FIREBASE CONFIGURATION */
+
     const firebaseConfig = {
       apiKey: "AIzaSyDqoyy1vweZRsA8iPzvy2lwRMzcdAPT5Es",
       authDomain: "website-sample-20f96.firebaseapp.com",
@@ -869,120 +858,197 @@ body.dark-mode > * {
     const auth = getAuth(app);
     const db = getFirestore(app);
 
-    /* ELEMENTS */
+
+    /* HTML ELEMENTS */
+
     const loginModal = document.getElementById("loginModal");
     const loginForm = document.getElementById("loginForm");
     const loginError = document.getElementById("loginError");
-    const adminDashboard = document.getElementById("adminDashboard");
+
+    const adminDashboard =
+      document.getElementById("adminDashboard");
+
     const eventForm = document.getElementById("eventForm");
     const formStatus = document.getElementById("formStatus");
+
     const publicEvents = document.getElementById("publicEvents");
     const adminEventList = document.getElementById("adminEventList");
 
+    const saveEventButton =
+      document.getElementById("saveEventButton");
+
+    const cancelEditButton =
+      document.getElementById("cancelEditButton");
+
+    const eventFormHeading =
+      document.getElementById("eventFormHeading");
+
     let currentUserIsAdmin = false;
+    let editingEventId = null;
+
 
     /* DARK MODE */
+
     const themeToggle = document.getElementById("themeToggle");
 
     function setTheme(isDark) {
+
       document.body.classList.toggle("dark-mode", isDark);
-      themeToggle.textContent = isDark ? "☀️ Light Mode" : "🌙 Dark Mode";
-      themeToggle.setAttribute("aria-pressed", String(isDark));
+
+      themeToggle.textContent = isDark
+        ? "☀️ Light Mode"
+        : "🌙 Dark Mode";
+
+      themeToggle.setAttribute(
+        "aria-pressed",
+        String(isDark)
+      );
 
       try {
-        localStorage.setItem("sjd-theme", isDark ? "dark" : "light");
+        localStorage.setItem(
+          "sjd-theme",
+          isDark ? "dark" : "light"
+        );
       } catch (error) {
         console.warn("Theme preference could not be saved.");
       }
     }
-try {
-  const savedTheme = localStorage.getItem("sjd-theme");
 
-  setTheme(savedTheme === "dark");
-} catch (error) {
-  setTheme(false);
-}
+    try {
+      const savedTheme = localStorage.getItem("sjd-theme");
+      setTheme(savedTheme === "dark");
+    } catch (error) {
+      setTheme(false);
+    }
+
     themeToggle.addEventListener("click", () => {
-      setTheme(!document.body.classList.contains("dark-mode"));
+      setTheme(
+        !document.body.classList.contains("dark-mode")
+      );
     });
+
 
     /* LOGIN POPUP */
-    document.getElementById("openLogin").addEventListener("click", () => {
-      loginModal.classList.add("show");
-      loginError.textContent = "";
-    });
 
-    document.getElementById("closeLogin").addEventListener("click", () => {
-      loginModal.classList.remove("show");
-    });
+    document.getElementById("openLogin")
+      .addEventListener("click", () => {
+
+        loginModal.classList.add("show");
+        loginError.textContent = "";
+
+      });
+
+    document.getElementById("closeLogin")
+      .addEventListener("click", () => {
+
+        loginModal.classList.remove("show");
+
+      });
 
     loginModal.addEventListener("click", (event) => {
+
       if (event.target === loginModal) {
         loginModal.classList.remove("show");
       }
+
     });
 
+
     /* SIGN IN */
+
     loginForm.addEventListener("submit", async (event) => {
+
       event.preventDefault();
+
       loginError.textContent = "Signing in...";
 
-      const email = document.getElementById("loginEmail").value.trim();
-      const password = document.getElementById("loginPassword").value;
+      const email =
+        document.getElementById("loginEmail").value.trim();
+
+      const password =
+        document.getElementById("loginPassword").value;
 
       try {
+
         const result = await signInWithEmailAndPassword(
-          auth, email, password
+          auth,
+          email,
+          password
         );
 
         if (result.user.uid !== ADMIN_UID) {
+
           await signOut(auth);
-          loginError.textContent = "This account does not have admin access.";
+
+          loginError.textContent =
+            "This account does not have admin access.";
+
           return;
         }
 
         loginError.textContent = "";
         loginModal.classList.remove("show");
         loginForm.reset();
+
       } catch (error) {
+
         console.error("Login error:", error);
+
         loginError.textContent =
           "Login failed. Check your email and password.";
+
       }
+
     });
 
+
     /* AUTHENTICATION STATE */
+
     onAuthStateChanged(auth, async (user) => {
-      currentUserIsAdmin = Boolean(user && user.uid === ADMIN_UID);
+
+      currentUserIsAdmin =
+        Boolean(user && user.uid === ADMIN_UID);
 
       if (user && !currentUserIsAdmin) {
         await signOut(auth);
       }
 
-      adminDashboard.classList.toggle("visible", currentUserIsAdmin);
+      adminDashboard.classList.toggle(
+        "visible",
+        currentUserIsAdmin
+      );
 
       if (currentUserIsAdmin) {
         await loadAdminEvents();
       } else {
         adminEventList.replaceChildren();
+        resetEventForm();
       }
+
     });
 
+
     /* LOG OUT */
-    document.getElementById("logoutButton").addEventListener(
-      "click", async () => {
+
+    document.getElementById("logoutButton")
+      .addEventListener("click", async () => {
+
         try {
           await signOut(auth);
         } catch (error) {
           console.error("Logout error:", error);
           alert("Could not log out. Please try again.");
         }
-      }
-    );
+
+      });
+
 
     /* SAFE TEXT HELPER */
+
     function addTextElement(parent, tag, text, className) {
+
       const element = document.createElement(tag);
+
       element.textContent = text || "";
 
       if (className) {
@@ -990,98 +1056,182 @@ try {
       }
 
       parent.appendChild(element);
+
       return element;
     }
 
+
+    /* SORT EVENTS BY DATE */
+
+    function sortEvents(events) {
+
+      return events.sort((a, b) =>
+        String(a.date || "").localeCompare(
+          String(b.date || "")
+        )
+      );
+
+    }
+
+
     /* LOAD PUBLIC EVENTS */
+
     async function loadPublicEvents() {
+
       publicEvents.replaceChildren();
-      addTextElement(publicEvents, "p", "Loading events...", "empty-message");
+
+      addTextElement(
+        publicEvents,
+        "p",
+        "Loading events...",
+        "empty-message"
+      );
 
       try {
-        const snapshot = await getDocs(collection(db, "events"));
+
+        const snapshot = await getDocs(
+          collection(db, "events")
+        );
+
         publicEvents.replaceChildren();
 
         if (snapshot.empty) {
+
           addTextElement(
             publicEvents,
             "p",
             "No events have been posted yet. Check back soon!",
             "empty-message"
           );
+
           return;
         }
 
-        const events = snapshot.docs.map(eventDoc => ({
-          id: eventDoc.id,
-          ...eventDoc.data()
-        }));
-
-        events.sort((a, b) =>
-          String(a.date || "").localeCompare(String(b.date || ""))
+        const events = sortEvents(
+          snapshot.docs.map(eventDoc => ({
+            id: eventDoc.id,
+            ...eventDoc.data()
+          }))
         );
 
         events.forEach(event => {
+
           const card = document.createElement("article");
           card.className = "event-card";
 
-          addTextElement(card, "h3", event.name || "Untitled Event");
-          addTextElement(card, "p", "📅 " + (event.date || "Date not set"), "event-detail");
-          addTextElement(card, "p", "🕒 " + (event.time || "Time not set"), "event-detail");
-          addTextElement(card, "p", "📍 " + (event.location || "Location not set"), "event-detail");
+          addTextElement(
+            card,
+            "h3",
+            event.name || "Untitled Event"
+          );
+
+          addTextElement(
+            card,
+            "p",
+            "📅 " + (event.date || "Date not set"),
+            "event-detail"
+          );
+
+          addTextElement(
+            card,
+            "p",
+            "🕒 " + (event.time || "Time not set"),
+            "event-detail"
+          );
+
+          addTextElement(
+            card,
+            "p",
+            "📍 " + (event.location || "Location not set"),
+            "event-detail"
+          );
 
           if (event.description) {
+
             addTextElement(
-              card, "p", event.description, "event-description"
+              card,
+              "p",
+              event.description,
+              "event-description"
             );
+
           }
 
           publicEvents.appendChild(card);
+
         });
 
       } catch (error) {
+
         console.error("Could not load public events:", error);
+
         publicEvents.replaceChildren();
+
         addTextElement(
           publicEvents,
           "p",
           "Events could not be loaded. Please try again later.",
           "empty-message"
         );
+
       }
+
     }
 
+
     /* LOAD ADMIN EVENTS */
+
     async function loadAdminEvents() {
+
       if (!currentUserIsAdmin) return;
 
       adminEventList.replaceChildren();
-      addTextElement(adminEventList, "p", "Loading events...");
+
+      addTextElement(
+        adminEventList,
+        "p",
+        "Loading events..."
+      );
 
       try {
-        const snapshot = await getDocs(collection(db, "events"));
+
+        const snapshot = await getDocs(
+          collection(db, "events")
+        );
+
         adminEventList.replaceChildren();
 
         if (snapshot.empty) {
-          addTextElement(adminEventList, "p", "There are no events yet.");
+
+          addTextElement(
+            adminEventList,
+            "p",
+            "There are no events yet."
+          );
+
           return;
         }
 
-        const events = snapshot.docs.map(eventDoc => ({
-          id: eventDoc.id,
-          ...eventDoc.data()
-        }));
-
-        events.sort((a, b) =>
-          String(a.date || "").localeCompare(String(b.date || ""))
+        const events = sortEvents(
+          snapshot.docs.map(eventDoc => ({
+            id: eventDoc.id,
+            ...eventDoc.data()
+          }))
         );
 
         events.forEach(event => {
+
           const row = document.createElement("div");
           row.className = "admin-event";
 
           const details = document.createElement("div");
-          addTextElement(details, "strong", event.name || "Untitled Event");
+
+          addTextElement(
+            details,
+            "strong",
+            event.name || "Untitled Event"
+          );
+
           addTextElement(
             details,
             "p",
@@ -1089,12 +1239,67 @@ try {
             "event-detail"
           );
 
+          const actions = document.createElement("div");
+          actions.className = "admin-event-actions";
+
+          /* EDIT BUTTON */
+
+          const editButton = document.createElement("button");
+
+          editButton.className = "edit-button";
+          editButton.type = "button";
+          editButton.textContent = "Edit";
+
+          editButton.addEventListener("click", () => {
+
+            if (!currentUserIsAdmin) return;
+
+            editingEventId = event.id;
+
+            document.getElementById("eventName").value =
+              event.name || "";
+
+            document.getElementById("eventDate").value =
+              event.date || "";
+
+            document.getElementById("eventTime").value =
+              event.time || "";
+
+            document.getElementById("eventLocation").value =
+              event.location || "";
+
+            document.getElementById("eventDescription").value =
+              event.description || "";
+
+            eventFormHeading.textContent = "✏️ Edit Event";
+
+            saveEventButton.textContent = "Update Event";
+
+            cancelEditButton.hidden = false;
+
+            formStatus.textContent =
+              "You are editing: " + (event.name || "this event");
+
+            document.getElementById("eventName").focus();
+
+            eventForm.scrollIntoView({
+              behavior: "smooth",
+              block: "center"
+            });
+
+          });
+
+
+          /* DELETE BUTTON */
+
           const deleteButton = document.createElement("button");
+
           deleteButton.className = "delete-button";
           deleteButton.type = "button";
           deleteButton.textContent = "Delete";
 
           deleteButton.addEventListener("click", async () => {
+
             if (!currentUserIsAdmin) return;
 
             const confirmed = confirm(
@@ -1107,82 +1312,196 @@ try {
             deleteButton.textContent = "Deleting...";
 
             try {
-              await deleteDoc(doc(db, "events", event.id));
+
+              await deleteDoc(
+                doc(db, "events", event.id)
+              );
+
+              if (editingEventId === event.id) {
+                resetEventForm();
+              }
+
               await loadAdminEvents();
               await loadPublicEvents();
+
             } catch (error) {
+
               console.error("Delete error:", error);
-              alert("Could not delete this event. Please try again.");
+
+              alert(
+                "Could not delete this event. Please try again."
+              );
+
               deleteButton.disabled = false;
               deleteButton.textContent = "Delete";
+
             }
+
           });
 
-          row.append(details, deleteButton);
+          actions.append(editButton, deleteButton);
+
+          row.append(details, actions);
+
           adminEventList.appendChild(row);
+
         });
 
       } catch (error) {
+
         console.error("Could not load admin events:", error);
+
         adminEventList.replaceChildren();
-        addTextElement(adminEventList, "p", "Could not load events.");
+
+        addTextElement(
+          adminEventList,
+          "p",
+          "Could not load events."
+        );
+
       }
+
     }
 
-    /* ADD NEW EVENT */
-    eventForm.addEventListener("submit", async (event) => {
-      event.preventDefault();
 
-      if (!currentUserIsAdmin || !auth.currentUser ||
-          auth.currentUser.uid !== ADMIN_UID) {
-        formStatus.textContent = "You must be logged in as an administrator.";
-        return;
-      }
+    /* RESET EVENT FORM */
 
-      const name = document.getElementById("eventName").value.trim();
-      const date = document.getElementById("eventDate").value;
-      const time = document.getElementById("eventTime").value.trim();
-      const location = document.getElementById("eventLocation").value.trim();
-      const description = document.getElementById("eventDescription").value.trim();
+    function resetEventForm() {
 
-      if (!name || !date || !time || !location) {
-        formStatus.textContent = "Please fill in all required fields.";
-        return;
-      }
+      editingEventId = null;
 
-      const saveButton = eventForm.querySelector('button[type="submit"]');
-      saveButton.disabled = true;
-      saveButton.textContent = "Saving...";
+      eventForm.reset();
+
+      eventFormHeading.textContent = "➕ Add a New Event";
+
+      saveEventButton.textContent = "Save Event";
+
+      cancelEditButton.hidden = true;
+
       formStatus.textContent = "";
 
-      try {
-        await addDoc(collection(db, "events"), {
-          name,
-          date,
-          time,
-          location,
-          description,
-          createdAt: serverTimestamp()
-        });
+    }
 
-        eventForm.reset();
-        formStatus.textContent = "Event saved successfully!";
+    cancelEditButton.addEventListener("click", resetEventForm);
+
+
+    /* ADD OR UPDATE EVENT */
+
+    eventForm.addEventListener("submit", async (event) => {
+
+      event.preventDefault();
+
+      if (
+        !currentUserIsAdmin ||
+        !auth.currentUser ||
+        auth.currentUser.uid !== ADMIN_UID
+      ) {
+
+        formStatus.textContent =
+          "You must be logged in as an administrator.";
+
+        return;
+      }
+
+      const name =
+        document.getElementById("eventName").value.trim();
+
+      const date =
+        document.getElementById("eventDate").value;
+
+      const time =
+        document.getElementById("eventTime").value.trim();
+
+      const location =
+        document.getElementById("eventLocation").value.trim();
+
+      const description =
+        document.getElementById("eventDescription").value.trim();
+
+      if (!name || !date || !time || !location) {
+
+        formStatus.textContent =
+          "Please fill in all required fields.";
+
+        return;
+      }
+
+      saveEventButton.disabled = true;
+
+      saveEventButton.textContent = editingEventId
+        ? "Updating..."
+        : "Saving...";
+
+      formStatus.textContent = "";
+
+      const eventData = {
+        name,
+        date,
+        time,
+        location,
+        description
+      };
+
+      try {
+
+        if (editingEventId) {
+
+          await updateDoc(
+            doc(db, "events", editingEventId),
+            eventData
+          );
+
+          formStatus.textContent =
+            "Event updated successfully!";
+
+        } else {
+
+          await addDoc(
+            collection(db, "events"),
+            {
+              ...eventData,
+              createdAt: serverTimestamp()
+            }
+          );
+
+          formStatus.textContent =
+            "Event saved successfully!";
+
+        }
+
+        resetEventForm();
 
         await loadPublicEvents();
         await loadAdminEvents();
 
+        formStatus.textContent =
+          "Your event has been saved successfully!";
+
       } catch (error) {
+
         console.error("Could not save event:", error);
+
         formStatus.textContent =
           "Could not save the event. Check your connection and permissions.";
+
       } finally {
-        saveButton.disabled = false;
-        saveButton.textContent = "Save Event";
+
+        saveEventButton.disabled = false;
+
+        saveEventButton.textContent = editingEventId
+          ? "Update Event"
+          : "Save Event";
+
       }
+
     });
 
-    /* LOAD PUBLIC EVENTS WHEN PAGE OPENS */
+
+    /* LOAD EVENTS WHEN WEBSITE OPENS */
+
     loadPublicEvents();
+
   </script>
+
 </body>
 </html>
