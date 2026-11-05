@@ -691,6 +691,101 @@
         animation: none;
       }
     }
+    /* ADMIN DASHBOARD STYLING */
+.admin-dashboard {
+  max-width: 1000px;
+  margin: 60px auto;
+  padding: 30px;
+  color: var(--text);
+}
+
+.admin-dashboard h2 {
+  color: var(--navy);
+  text-align: center;
+  font-size: 30px;
+  margin-bottom: 10px;
+}
+
+.admin-dashboard > p {
+  text-align: center;
+  color: var(--muted);
+  margin-bottom: 30px;
+}
+
+.dashboard-card {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  padding: 25px;
+  margin-bottom: 25px;
+  box-shadow: 0 5px 18px rgba(36, 59, 99, 0.06);
+}
+
+.dashboard-card h3 {
+  color: var(--navy);
+  margin-bottom: 20px;
+}
+    /* DASHBOARD FORM */
+.dashboard-card label {
+  display: block;
+  color: var(--navy);
+  font-weight: bold;
+  margin: 15px 0 7px;
+}
+
+.dashboard-card input,
+.dashboard-card textarea {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  font: inherit;
+  color: var(--text);
+  box-sizing: border-box;
+}
+
+.dashboard-card textarea {
+  min-height: 100px;
+  resize: vertical;
+}
+
+.dashboard-card button {
+  margin-top: 20px;
+  padding: 12px 22px;
+  background: var(--navy);
+  color: white;
+  border: none;
+  border-radius: 10px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.dashboard-card button:hover {
+  background: var(--blue-dark);
+}
+    /* DASHBOARD EVENT LIST */
+#adminEventList {
+  background: var(--background);
+  border-radius: 12px;
+  padding: 18px;
+  color: var(--muted);
+  min-height: 40px;
+}
+
+#adminDashboard {
+  animation: dashboardFade 0.5s ease;
+}
+
+@keyframes dashboardFade {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
   </style>
 </head>
 
