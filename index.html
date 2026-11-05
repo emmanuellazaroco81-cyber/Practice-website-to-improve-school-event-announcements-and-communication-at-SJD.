@@ -437,20 +437,76 @@
        DARK MODE
        =================================== */
 
-    body.dark-mode {
-      --navy: #e2eaff;
-      --blue: #18263d;
-      --blue-dark: #4779bd;
-      --yellow: #302a1e;
-      --background: #080d19;
-      --surface: #111a2c;
-      --text: #e3ebff;
-      --muted: #a5b3cb;
-      --border: #293953;
-      --shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
-      background: var(--background);
-      color: var(--text);
-    }
+  
+body.dark-mode {
+  --navy: #e2eaff;
+  --blue: #080d19;
+  --blue-dark: #4779bd;
+  --yellow: #111a2c;
+  --background: #05070d;
+  --surface: #0b101c;
+  --text: #e3ebff;
+  --muted: #a5b3cb;
+  --border: #293953;
+  --shadow: 0 0 18px rgba(0, 225, 255, 0.12);
+
+  background: var(--background);
+  color: var(--text);
+}
+
+/* Slowly changing rainbow neon glow */
+body.dark-mode::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+
+  background: linear-gradient(
+    120deg,
+    #ff004c,
+    #ff8c00,
+    #ffee00,
+    #00ff88,
+    #00c8ff,
+    #8a2bff,
+    #ff00c8,
+    #ff004c
+  );
+
+  background-size: 300% 300%;
+  animation: rainbowFlow 18s ease infinite;
+
+  opacity: 0.55;
+  filter: blur(35px);
+
+  /* Only show the glow near the edges */
+  mask-image: linear-gradient(
+    to bottom,
+    black 0%,
+    transparent 35%,
+    transparent 65%,
+    black 100%
+  );
+}
+
+@keyframes rainbowFlow {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+body.dark-mode > * {
+  position: relative;
+  z-index: 1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  body.dark-mode::before {
+    animation: none;
+  }
+}
+
 
     body.dark-mode .navbar {
       background: rgba(12, 20, 36, 0.96);
