@@ -905,39 +905,86 @@
   </div>
 
   <!-- JAVASCRIPT FOR OPENING AND CLOSING LOGIN -->
-  <script>
-    const loginOverlay = document.getElementById("loginOverlay");
-    const adminLoginButton = document.getElementById("adminLoginButton");
-    const closeLoginButton = document.getElementById("closeLogin");
-    const loginForm = document.getElementById("loginForm");
-    const loginMessage = document.getElementById("loginMessage");
+ <script type="module">
+  // Import Firebase
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/11.10.0/firebase-app.js";
 
-    // Open the login popup
-    adminLoginButton.addEventListener("click", () => {
-      loginOverlay.classList.add("show");
-      loginMessage.textContent = "";
-    });
+  import {
+    getAuth,
+    signInWithEmailAndPassword
+  } from "https://www.gstatic.com/firebasejs/11.10.0/firebase-auth.js";
 
-    // Close the popup using the X button
-    closeLoginButton.addEventListener("click", () => {
+  // Your Firebase project settings
+  const firebaseConfig = {
+    apiKey: "AIzaSyDqoyy1vweZRsA8iPzvy2lwRMzcdAPT5Es",
+    authDomain: "website-sample-20f96.firebaseapp.com",
+    projectId: "website-sample-20f96",
+    storageBucket: "website-sample-20f96.firebasestorage.app",
+    messagingSenderId: "449979424960",
+    appId: "1:449979424960:web:63728022ad5df470d30d25",
+    measurementId: "G-H0YPSP25VJ"
+  };
+
+  // Start Firebase
+  const app = initializeApp(firebaseConfig);
+  const auth = getAuth(app);
+
+  // Get the login elements
+  const loginOverlay = document.getElementById("loginOverlay");
+  const adminLoginButton = document.getElementById("adminLoginButton");
+  const closeLoginButton = document.getElementById("closeLogin");
+  const loginForm = document.getElementById("loginForm");
+  const loginMessage = document.getElementById("loginMessage");
+
+  const emailInput = document.getElementById("adminEmail");
+  const passwordInput = document.getElementById("adminPassword");
+
+  // Open the login popup
+  adminLoginButton.addEventListener("click", () => {
+    loginOverlay.classList.add("show");
+    loginMessage.textContent = "";
+  });
+
+  // Close the popup using the X button
+  closeLoginButton.addEventListener("click", () => {
+    loginOverlay.classList.remove("show");
+  });
+
+  // Close by clicking outside the panel
+  loginOverlay.addEventListener("click", (event) => {
+    if (event.target === loginOverlay) {
       loginOverlay.classList.remove("show");
-    });
+    }
+  });
 
-    // Close the popup by clicking outside the panel
-    loginOverlay.addEventListener("click", (event) => {
-      if (event.target === loginOverlay) {
-        loginOverlay.classList.remove("show");
+  // Connect the login form to Firebase
+  loginForm.addEventListener("submit", async (event) => {
+    event.preventDefault();
+
+    const email = emailInput.value.trim();
+    const password = passwordInput.value;
+
+    loginMessage.textContent = "Logging in...";
+
+    try {
+      await signInWithEmailAndPassword(auth, email, password);
+
+      loginMessage.textContent = "Login successful! 🎉";
+
+      loginOverlay.classList.remove("show");
+
+      // Admin dashboard will be added next
+    } catch (error) {
+      if (
+        error.code === "auth/invalid-credential" ||
+        error.code === "auth/wrong-password" ||
+        error.code === "auth/user-not-found"
+      ) {
+        loginMessage.textContent = "Incorrect email or password.";
+      } else {
+        loginMessage.textContent =
+          "Login failed. Please try again.";
       }
-    });
-
-    // Temporary login message until Firebase is connected
-    loginForm.addEventListener("submit", (event) => {
-      event.preventDefault();
-
-      loginMessage.textContent =
-        "Login is not connected yet. Firebase setup comes next!";
-    });
-  </script>
-
-</body>
-</html>
+    }
+  });
+</script>
