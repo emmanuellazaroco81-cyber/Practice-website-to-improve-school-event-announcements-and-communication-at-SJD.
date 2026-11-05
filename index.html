@@ -839,13 +839,7 @@
         console.warn("Theme preference could not be saved.");
       }
     }
-
-    try {
-      setTheme(localStorage.getItem("sjd-theme") === "dark");
-    } catch (error) {
-      setTheme(false);
-    }
-
+setTheme(false);
     themeToggle.addEventListener("click", () => {
       setTheme(!document.body.classList.contains("dark-mode"));
     });
